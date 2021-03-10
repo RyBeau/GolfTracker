@@ -6,4 +6,8 @@
     <string name="eighteen_holes">18 Holes</string>
     <string name="nine_holes">9 Holes</string>
     <string name="holes_played">Holes Played:</string>
+    <string name="hole">Hole</string>
+    <string name="par">Par</string>
+    <string name="score">Score</string>
+    <string name="putts">Putts</string>
 </resources>
