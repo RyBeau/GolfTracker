@@ -8,18 +8,12 @@
     tools:context=".NewRoundFragment">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/new_round"
-            android:textSize="36sp" />
-    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_round"
+        android:textSize="36sp" />
 
     <View
         android:id="@+id/divider2"
@@ -33,21 +27,42 @@
         android:orientation="horizontal"
         android:checkedButton="@+id/nineHoles">
 
+        <TextView
+            android:id="@+id/holesPlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/holes_played"
+            android:textSize="18sp" />
+
         <RadioButton
             android:id="@+id/nineHoles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:text="@string/nine_holes" />
+            android:background="@color/primary_green"
+            android:buttonTint="@color/white"
+            android:text="@string/nine_holes"
+            android:textSize="18sp"/>
 
         <RadioButton
             android:id="@+id/eighteenHoles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/eighteen_holes" />
+            android:background="@color/primary_green"
+            android:buttonTint="@color/white"
+            android:text="@string/eighteen_holes"
+            android:textSize="18sp" />
 
     </RadioGroup>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 
 
 </LinearLayout>
