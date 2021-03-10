@@ -16,6 +16,7 @@
             android:layout_height="75dp"
             android:text="@string/new_round"
             android:textSize="18sp"
+            app:cornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +31,7 @@
             android:text="@string/overall_stats"
             android:textAllCaps="true"
             android:textSize="18sp"
+            app:cornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newRound" />
@@ -41,6 +43,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/previous_rounds"
             android:textSize="18sp"
+            app:cornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/overallStats" />
