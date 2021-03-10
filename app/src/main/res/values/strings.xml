@@ -3,6 +3,6 @@
     <string name="overall_stats">Overall Stats</string>
     <string name="new_round">New Round</string>
     <string name="previous_rounds">Previous Rounds</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="eighteen_holes">18 Holes</string>
+    <string name="nine_holes">9 Holes</string>
 </resources>
