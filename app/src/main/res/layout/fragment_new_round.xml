@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
@@ -7,11 +8,11 @@
     android:orientation="vertical"
     tools:context=".NewRoundFragment">
 
-
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:text="@string/new_round"
         android:textSize="36sp" />
 
@@ -21,42 +22,51 @@
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
-    <RadioGroup
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:checkedButton="@+id/nineHoles">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/holesPlayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
             android:text="@string/holes_played"
             android:textSize="18sp" />
 
-        <RadioButton
-            android:id="@+id/nineHoles"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:background="@color/primary_green"
-            android:buttonTint="@color/white"
-            android:text="@string/nine_holes"
-            android:textSize="18sp"/>
-
-        <RadioButton
-            android:id="@+id/eighteenHoles"
-            android:layout_width="match_parent"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/holesPlayedGroup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/primary_green"
-            android:buttonTint="@color/white"
-            android:text="@string/eighteen_holes"
-            android:textSize="18sp" />
+            app:checkedChip="@id/nineHoles"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-    </RadioGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/nineHoles"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nine_holes"
+                android:textColor="@color/white"
+                app:checkedIconTint="@color/white"
+                app:chipBackgroundColor="@color/primary_green" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/eighteenHoles"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eighteen_holes"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/primary_green" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
 
     <View
         android:id="@+id/divider3"
