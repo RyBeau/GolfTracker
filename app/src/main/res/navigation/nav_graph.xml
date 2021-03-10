@@ -9,5 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.rybeau.golfapp.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_newRoundFragment"
+            app:destination="@id/newRoundFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newRoundFragment"
+        android:name="com.rybeau.golfapp.NewRoundFragment"
+        android:label="fragment_new_round"
+        tools:layout="@layout/fragment_new_round" />
 </navigation>
