@@ -13,10 +13,11 @@
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="55dp"
         android:layout_marginStart="15dp"
         android:gravity="center"
         android:text="@string/new_round"
+        android:textColor="?attr/colorPrimary"
         android:textSize="36sp" />
 
     <View
@@ -28,7 +29,7 @@
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/holesPlayedLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:layout_marginEnd="15dp"
         app:alignItems="center"
         app:justifyContent="space_between">
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:text="@string/holes_played"
+            android:textColor="?attr/colorPrimary"
             android:textSize="18sp" />
 
         <com.google.android.material.chip.ChipGroup
@@ -55,9 +57,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nine_holes"
-                android:textColor="@color/white"
-                app:checkedIconTint="@color/white"
-                app:chipBackgroundColor="@color/primary_green" />
+                android:textColor="?attr/colorSecondary"
+                app:checkedIconTint="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimary" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/eighteenHoles"
@@ -65,8 +67,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/eighteen_holes"
-                android:textColor="@color/white"
-                app:chipBackgroundColor="@color/primary_green" />
+                android:textColor="?attr/colorSecondary"
+                app:checkedIconTint="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimary" />
 
         </com.google.android.material.chip.ChipGroup>
     </com.google.android.flexbox.FlexboxLayout>
@@ -81,11 +84,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="5dp"
         android:layout_weight="17"
-        app:cardBackgroundColor="@color/primary_green"
+        app:cardBackgroundColor="?attr/colorPrimary"
         app:cardCornerRadius="30dp"
         app:contentPadding="15dp">
 
@@ -107,7 +110,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/hole"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="18sp" />
 
                 <TextView
@@ -117,7 +120,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/par"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="18sp" />
 
                 <TextView
@@ -127,7 +130,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/score"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="18sp" />
 
                 <TextView
@@ -137,7 +140,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/putts"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -150,22 +153,53 @@
                 android:scrollIndicators="top|bottom"
                 android:scrollbarSize="1dp"
                 android:scrollbarStyle="outsideOverlay"
-                android:scrollbarThumbVertical="@color/white"
+                android:scrollbarThumbVertical="?attr/colorSecondary"
                 android:scrollbars="vertical" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="250dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center"
-        android:height="75dp"
-        android:scrollbarAlwaysDrawVerticalTrack="false"
-        android:text="@string/add_round"
-        android:textSize="18sp"
-        app:cornerRadius="30dp" />
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="15dp">
+
+        <Button
+            android:id="@+id/addRoundButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="7.5dp"
+            android:layout_weight="1"
+            android:height="75dp"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:text="@string/add_round"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="18sp"
+            app:cornerRadius="30dp" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="7.5dp"
+            android:layout_weight="1"
+            android:height="75dp"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:text="@string/cancel"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="18sp"
+            app:cornerRadius="30dp" />
+    </LinearLayout>
 
 
 </LinearLayout>
