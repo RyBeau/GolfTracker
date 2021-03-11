@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:scrollIndicators="bottom"
+    android:scrollbarSize="10dp"
     tools:context=".NewRoundFragment">
 
     <TextView
@@ -75,55 +77,92 @@
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
-    <LinearLayout
-        android:id="@+id/headerLayout"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:orientation="horizontal">
+        android:layout_margin="15dp"
+        android:layout_weight="19"
+        app:cardBackgroundColor="@color/primary_green"
+        app:cardCornerRadius="30dp"
+        app:contentPadding="15dp">
 
-        <TextView
-            android:id="@+id/holeText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/hole"
-            android:textSize="18sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/parText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/par"
-            android:textSize="18sp" />
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/scoreText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/score"
-            android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/holeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/hole"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/puttsText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/putts"
-            android:textSize="18sp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/parText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/par"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inputView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/scoreText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/score"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/puttsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/putts"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/inputView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadeScrollbars="false"
+                android:scrollIndicators="top|bottom"
+                android:scrollbarSize="1dp"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbarThumbVertical="@color/white"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="247dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:text="@string/add_round"
+        android:textSize="18sp"
+        app:cornerRadius="30dp" />
 
 
 </LinearLayout>
