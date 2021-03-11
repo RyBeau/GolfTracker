@@ -25,6 +25,7 @@
         android:textCursorDrawable="@null"
         android:importantForAutofill="no"
         android:hint="@string/par"
+        android:textColorHint="?attr/colorSecondary"
         />
 
     <EditText
@@ -40,6 +41,7 @@
         android:textCursorDrawable="@null"
         android:importantForAutofill="no"
         android:hint="@string/score"
+        android:textColorHint="?attr/colorSecondary"
         />
 
     <EditText
@@ -55,6 +57,7 @@
         android:textCursorDrawable="@null"
         android:importantForAutofill="no"
         android:hint="@string/putts"
+        android:textColorHint="?attr/colorSecondary"
         />
 
 </LinearLayout>
