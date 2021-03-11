@@ -12,4 +12,7 @@
     <string name="putts">Putts</string>
     <string name="add_round">Add Round</string>
     <string name="cancel">Cancel</string>
+    <string name="average_putts">Average Putts</string>
+    <string name="date">Date</string>
+    <string name="back">Back</string>
 </resources>

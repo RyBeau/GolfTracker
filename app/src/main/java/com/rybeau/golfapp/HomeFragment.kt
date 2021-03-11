@@ -29,5 +29,8 @@ class HomeFragment : Fragment() {
         view.findViewById<Button>(R.id.newRound)?.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_newRoundFragment, null)
         )
+        view.findViewById<Button>(R.id.previousRounds)?.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_previousRoundsFragment, null)
+        )
     }
 }
