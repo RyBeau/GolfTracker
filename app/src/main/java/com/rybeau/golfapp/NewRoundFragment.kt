@@ -1,10 +1,8 @@
 package com.rybeau.golfapp
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -41,7 +39,7 @@ class NewRoundFragment : Fragment() {
         createInput(view)
     }
 
-    fun updateHoles(holes: Int) {
+    private fun updateHoles(holes: Int) {
         if (holes != numHoles){
             numHoles = holes
             this.view?.let { createInput(it) }
