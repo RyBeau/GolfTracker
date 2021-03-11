@@ -13,8 +13,9 @@
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginStart="15dp"
+        android:gravity="center"
         android:text="@string/new_round"
         android:textSize="36sp" />
 
@@ -24,19 +25,19 @@
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
-    <LinearLayout
+    <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/holesPlayedLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="60dp"
+        android:layout_marginEnd="15dp"
+        app:alignItems="center"
+        app:justifyContent="space_between">
 
         <TextView
             android:id="@+id/holesPlayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_weight="1"
             android:text="@string/holes_played"
             android:textSize="18sp" />
 
@@ -44,7 +45,6 @@
             android:id="@+id/holesPlayedGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             app:checkedChip="@id/nineHoles"
             app:selectionRequired="true"
             app:singleSelection="true">
@@ -69,7 +69,7 @@
                 app:chipBackgroundColor="@color/primary_green" />
 
         </com.google.android.material.chip.ChipGroup>
-    </LinearLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 
     <View
         android:id="@+id/divider3"
@@ -79,9 +79,12 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_weight="19"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="17"
         app:cardBackgroundColor="@color/primary_green"
         app:cardCornerRadius="30dp"
         app:contentPadding="15dp">
@@ -155,10 +158,10 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="247dp"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:height="75dp"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:text="@string/add_round"
         android:textSize="18sp"
