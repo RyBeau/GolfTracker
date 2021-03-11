@@ -3,4 +3,13 @@
     <string name="overall_stats">Overall Stats</string>
     <string name="new_round">New Round</string>
     <string name="previous_rounds">Previous Rounds</string>
+    <string name="eighteen_holes">18 Holes</string>
+    <string name="nine_holes">9 Holes</string>
+    <string name="holes_played">Holes Played:</string>
+    <string name="hole">Hole</string>
+    <string name="par">Par</string>
+    <string name="score">Score</string>
+    <string name="putts">Putts</string>
+    <string name="add_round">Add Round</string>
+    <string name="cancel">Cancel</string>
 </resources>

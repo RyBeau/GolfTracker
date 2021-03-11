@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollIndicators="bottom"
+    android:scrollbarSize="10dp"
+    tools:context=".NewRoundFragment">
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginStart="15dp"
+        android:gravity="center"
+        android:text="@string/new_round"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="36sp" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/holesPlayedLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginEnd="15dp"
+        app:alignItems="center"
+        app:justifyContent="space_between">
+
+        <TextView
+            android:id="@+id/holesPlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/holes_played"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="18sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/holesPlayedGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:checkedChip="@id/nineHoles"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/nineHoles"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nine_holes"
+                android:textColor="?attr/colorSecondary"
+                app:checkedIconTint="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimary" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/eighteenHoles"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eighteen_holes"
+                android:textColor="?attr/colorSecondary"
+                app:checkedIconTint="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimary" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="17"
+                app:cardBackgroundColor="?attr/colorPrimary"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/inputView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fadeScrollbars="false"
+                        android:scrollIndicators="top|bottom"
+                        android:scrollbarSize="1dp"
+                        android:scrollbarStyle="outsideOverlay"
+                        android:scrollbarThumbVertical="?attr/colorSecondary"
+                        android:scrollbars="vertical" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/buttonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:paddingStart="15dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="15dp">
+
+                <Button
+                    android:id="@+id/addRoundButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="7.5dp"
+                    android:layout_weight="1"
+                    android:height="75dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    android:text="@string/add_round"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="18sp"
+                    app:cornerRadius="30dp" />
+
+                <Button
+                    android:id="@+id/cancelButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="7.5dp"
+                    android:layout_weight="1"
+                    android:height="75dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    android:text="@string/cancel"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="18sp"
+                    app:cornerRadius="30dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

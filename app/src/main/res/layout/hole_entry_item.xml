@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/holeNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="?attr/colorSecondary"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/parInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="?attr/colorSecondary"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="?attr/colorSecondary"
+        android:textCursorDrawable="@null"
+        android:importantForAutofill="no"
+        android:hint="@string/par"
+        android:textColorHint="?attr/colorSecondary"
+        />
+
+    <EditText
+        android:id="@+id/scoreInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="?attr/colorSecondary"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="?attr/colorSecondary"
+        android:textCursorDrawable="@null"
+        android:importantForAutofill="no"
+        android:hint="@string/score"
+        android:textColorHint="?attr/colorSecondary"
+        />
+
+    <EditText
+        android:id="@+id/puttsInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="?attr/colorSecondary"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="?attr/colorSecondary"
+        android:textCursorDrawable="@null"
+        android:importantForAutofill="no"
+        android:hint="@string/putts"
+        android:textColorHint="?attr/colorSecondary"
+        />
+
+</LinearLayout>
