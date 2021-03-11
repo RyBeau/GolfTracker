@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class NewRoundFragment : Fragment() {
 
@@ -28,20 +30,11 @@ class NewRoundFragment : Fragment() {
     }
 
     private fun createInput(view: View){
-        val inputLayout: LinearLayout = view.findViewById(R.id.inputLayout)
-
-        for (i in 1..numHoles){
-            val holeLayout = LinearLayout(activity)
-            val holeText = TextView(activity)
-            holeText.text = i.toString()
-            val parEntry = EditText(activity)
-            val scoreEntry = EditText(activity)
-            val puttsEntry = EditText(activity)
-            holeLayout.addView(holeText)
-            holeLayout.addView(parEntry)
-            holeLayout.addView(scoreEntry)
-            holeLayout.addView(puttsEntry)
-            inputLayout.addView(holeLayout)
+        val holeEntryAdapter = HoleEntryAdapter(IntArray(numHoles){it + 1})
+        val recyclerView: RecyclerView = view.findViewById(R.id.inputView)
+        recyclerView.apply{
+            layoutManager = LinearLayoutManager(activity)
+            adapter = holeEntryAdapter
         }
     }
 }
