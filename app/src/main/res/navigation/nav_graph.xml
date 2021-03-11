@@ -13,10 +13,22 @@
         <action
             android:id="@+id/action_homeFragment_to_newRoundFragment"
             app:destination="@id/newRoundFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_previousRoundsFragment"
+            app:destination="@id/previousRoundsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newRoundFragment"
         android:name="com.rybeau.golfapp.NewRoundFragment"
         android:label="fragment_new_round"
-        tools:layout="@layout/fragment_new_round" />
+        tools:layout="@layout/fragment_new_round" >
+        <action
+            android:id="@+id/action_newRoundFragment_to_previousRoundsFragment"
+            app:destination="@id/previousRoundsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previousRoundsFragment"
+        android:name="com.rybeau.golfapp.PreviousRoundsFragment"
+        android:label="fragment_previous_rounds"
+        tools:layout="@layout/fragment_previous_rounds" />
 </navigation>
