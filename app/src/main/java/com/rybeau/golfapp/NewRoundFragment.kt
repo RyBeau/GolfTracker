@@ -2,10 +2,12 @@ package com.rybeau.golfapp
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
@@ -27,6 +29,17 @@ class NewRoundFragment : Fragment() {
 
         val nineButton = view.findViewById<Chip>(R.id.nineHoles)
         val eighteenButton = view.findViewById<Chip>(R.id.eighteenHoles)
+
+        val addRoundButton = view.findViewById<Button>(R.id.addRoundButton)
+        val cancelButton = view.findViewById<Button>(R.id.cancelButton)
+
+        addRoundButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_newRoundFragment_to_previousRoundsFragment, null )
+        )
+
+        cancelButton.setOnClickListener{
+            requireActivity().onBackPressed()
+        }
 
         nineButton.setOnClickListener{
             updateHoles(9)
