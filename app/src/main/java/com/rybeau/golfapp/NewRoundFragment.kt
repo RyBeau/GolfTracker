@@ -27,22 +27,18 @@ class NewRoundFragment : Fragment() {
 
         val nineButton = view.findViewById<Chip>(R.id.nineHoles)
         val eighteenButton = view.findViewById<Chip>(R.id.eighteenHoles)
-
         val addRoundButton = view.findViewById<Button>(R.id.addRoundButton)
         val cancelButton = view.findViewById<Button>(R.id.cancelButton)
 
         addRoundButton.setOnClickListener{
             enterNewRound(view)
         }
-
         cancelButton.setOnClickListener{
             cancelConfirmation()
         }
-
         nineButton.setOnClickListener{
             updateHoles(9)
         }
-
         eighteenButton.setOnClickListener{
             updateHoles(18)
         }
