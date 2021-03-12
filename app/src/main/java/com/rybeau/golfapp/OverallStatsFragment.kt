@@ -68,7 +68,7 @@ class OverallStatsFragment : Fragment() {
                     .name("Score")
                     .color(colors[1])
                     .showInLegend(false)
-                    .lineWidth(5f)
+                    .lineWidth(3f)
                     .data(arrayOf(3, 7, 2, 0, -2, 1, 2, -1, 4, 0)),
                 )
             )
