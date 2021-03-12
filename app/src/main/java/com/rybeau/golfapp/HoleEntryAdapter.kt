@@ -1,5 +1,6 @@
 package com.rybeau.golfapp
 
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,8 +27,11 @@ class HoleEntryAdapter(private val holes: IntArray)
     override fun onBindViewHolder(viewHolder: HoleEntryViewHolder, position: Int) {
         viewHolder.holeNumber.text = holes[position].toString()
         viewHolder.parInput.tag = "par${holes[position]}"
+        viewHolder.parInput.filters = arrayOf(HoleEntryFilter(1, 5))
         viewHolder.scoreInput.tag = "score${holes[position]}"
+        viewHolder.scoreInput.filters = arrayOf(HoleEntryFilter(1, 20))
         viewHolder.puttsInput.tag = "putts${holes[position]}"
+        viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(1, 20))
     }
 
     override fun getItemCount() = holes.size
