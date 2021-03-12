@@ -72,11 +72,10 @@ class OverallStatsFragment : Fragment() {
             .markerRadius(0f)
             .series(arrayOf(
                 AASeriesElement()
-                    .name("Score")
-                    .color(colors[1])
-                    .showInLegend(false)
-                    .lineWidth(3f)
-                    .data(arrayOf(3, 7, 2, 0, -2, 1, 2, -1, 4, 0)),
+                        .color(colors[1])
+                        .showInLegend(false)
+                        .lineWidth(3f)
+                        .data(arrayOf(3, 7, 2, 0, -2, 1, 2, -1, 4, 0)),
                 )
             )
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
