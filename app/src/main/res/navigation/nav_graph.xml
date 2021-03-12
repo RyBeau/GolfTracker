@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_previousRoundsFragment"
             app:destination="@id/previousRoundsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_overallStatsFragment"
+            app:destination="@id/overallStatsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newRoundFragment"
@@ -31,4 +34,9 @@
         android:name="com.rybeau.golfapp.PreviousRoundsFragment"
         android:label="fragment_previous_rounds"
         tools:layout="@layout/fragment_previous_rounds" />
+    <fragment
+        android:id="@+id/overallStatsFragment"
+        android:name="com.rybeau.golfapp.OverallStatsFragment"
+        android:label="fragment_overall_stats"
+        tools:layout="@layout/fragment_overall_stats" />
 </navigation>
