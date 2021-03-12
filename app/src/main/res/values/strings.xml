@@ -19,5 +19,5 @@
     <string name="handicap">Handicap</string>
     <string name="putts_per_hole">Putts Per Hole</string>
     <string name="total_rounds">Total Rounds</string>
-    <string name="previous_10_rounds">Previous 10 Rounds</string>
+    <string name="last_10_scores">Last 10 Scores</string>
 </resources>

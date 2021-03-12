@@ -40,33 +40,53 @@
         app:layout_constraintBottom_toTopOf="@+id/handicapLabel"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
-        android:id="@+id/aa_chart_view"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/chartCard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
+        android:backgroundTint="?attr/colorPrimary"
+        app:cardCornerRadius="15dp"
+        app:contentPaddingBottom="5dp"
+        app:contentPaddingRight="10dp"
+        app:contentPaddingTop="5dp"
         app:layout_constraintBottom_toTopOf="@+id/averageScoreLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/averageScoreLabel2">
+        app:layout_constraintTop_toBottomOf="@+id/divider">
 
-    </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/averageScoreLabel2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/previous_10_rounds"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarTitle2" />
+            <TextView
+                android:id="@+id/chartTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_10_scores"
+                android:textColor="?attr/colorSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                android:id="@+id/aa_chart_view"
+                android:layout_width="370dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chartTitle"
+                app:layout_constraintVertical_bias="0.501">
+
+            </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/handicapLabel"
@@ -97,7 +117,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="15dp"
         android:text="@string/total_rounds"
         android:textColor="?attr/colorPrimary"
         android:textSize="24sp"
@@ -142,7 +161,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="15dp"
         android:textColor="?attr/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/backButton"
