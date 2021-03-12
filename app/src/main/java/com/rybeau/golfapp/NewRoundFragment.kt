@@ -1,12 +1,10 @@
 package com.rybeau.golfapp
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,12 +31,12 @@ class NewRoundFragment : Fragment() {
         val addRoundButton = view.findViewById<Button>(R.id.addRoundButton)
         val cancelButton = view.findViewById<Button>(R.id.cancelButton)
 
-        addRoundButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_newRoundFragment_to_previousRoundsFragment, null )
-        )
+        addRoundButton.setOnClickListener{
+            enterNewRound(view)
+        }
 
         cancelButton.setOnClickListener{
-            requireActivity().onBackPressed()
+            cancelConfirmation()
         }
 
         nineButton.setOnClickListener{
@@ -50,6 +48,32 @@ class NewRoundFragment : Fragment() {
         }
 
         createInput(view)
+    }
+
+    private fun enterNewRound(view: View){
+        if(validateEntries(view)){
+            Navigation.createNavigateOnClickListener(R.id.action_newRoundFragment_to_previousRoundsFragment, null )
+        } else {
+            Toast.makeText(activity, "Some Entries are Invalid", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun validateEntries(view: View): Boolean{
+        return false
+    }
+
+    private fun cancelConfirmation(){
+        val builder = AlertDialog.Builder(activity)
+        builder.setMessage("Are you sure you want to cancel?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { _, _ ->
+                    requireActivity().onBackPressed()
+                }
+                .setNegativeButton("No"){ dialog, _ ->
+                    dialog.dismiss()
+                }
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun updateHoles(holes: Int) {
