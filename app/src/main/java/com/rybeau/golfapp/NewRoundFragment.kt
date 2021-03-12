@@ -54,7 +54,7 @@ class NewRoundFragment : Fragment() {
         if(validateEntries(view)){
             Navigation.createNavigateOnClickListener(R.id.action_newRoundFragment_to_previousRoundsFragment, null )
         } else {
-            Toast.makeText(activity, "Some Entries are Invalid", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, getString(R.string.invalid_entries), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -64,12 +64,12 @@ class NewRoundFragment : Fragment() {
 
     private fun cancelConfirmation(){
         val builder = AlertDialog.Builder(activity)
-        builder.setMessage("Are you sure you want to cancel?")
+        builder.setMessage(getString(R.string.cancel_confirmation))
                 .setCancelable(false)
-                .setPositiveButton("Yes") { _, _ ->
+                .setPositiveButton(R.string.yes) { _, _ ->
                     requireActivity().onBackPressed()
                 }
-                .setNegativeButton("No"){ dialog, _ ->
+                .setNegativeButton(R.string.no){ dialog, _ ->
                     dialog.dismiss()
                 }
         val alert = builder.create()
