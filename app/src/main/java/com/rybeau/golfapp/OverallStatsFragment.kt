@@ -50,7 +50,6 @@ class OverallStatsFragment : Fragment() {
     }
 
     private fun drawChart(view: View){
-
         val colors : Array<String> = getThemeColors()
 
         val aaChartView = view.findViewById<AAChartView>(R.id.aa_chart_view)
@@ -71,9 +70,8 @@ class OverallStatsFragment : Fragment() {
                     .showInLegend(false)
                     .lineWidth(5f)
                     .data(arrayOf(3, 7, 2, 0, -2, 1, 2, -1, 4, 0)),
+                )
             )
-            )
-
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
     }
 
