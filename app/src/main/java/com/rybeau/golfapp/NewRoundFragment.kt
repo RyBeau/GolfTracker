@@ -57,16 +57,16 @@ class NewRoundFragment : Fragment() {
 
     private fun validateEntries(view: View): Boolean{
         var valid = true
-        for (i in 1..numHoles){
-            val par = view.findViewWithTag<EditText>("par$i")
-            val score = view.findViewWithTag<EditText>("score$i")
-            val putts = view.findViewWithTag<EditText>("putts$i")
-
-            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
-                valid = false
-                break
-            }
-        }
+//        for (i in 1..numHoles){
+//            val par = view.findViewWithTag<EditText>("par$i")
+//            val score = view.findViewWithTag<EditText>("score$i")
+//            val putts = view.findViewWithTag<EditText>("putts$i")
+//
+//            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
+//                valid = false
+//                break
+//            }
+//        }
         return valid
     }
 
