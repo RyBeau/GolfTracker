@@ -27,7 +27,9 @@
         tools:layout="@layout/fragment_new_round" >
         <action
             android:id="@+id/action_newRoundFragment_to_previousRoundsFragment"
-            app:destination="@id/previousRoundsFragment" />
+            app:destination="@id/previousRoundsFragment"
+            app:popUpTo="@id/newRoundFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/previousRoundsFragment"

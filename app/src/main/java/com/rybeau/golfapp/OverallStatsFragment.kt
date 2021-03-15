@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 
@@ -20,6 +21,12 @@ class OverallStatsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val backButton = view.findViewById<Button>(R.id.backButton)
+
+        backButton.setOnClickListener{
+            requireActivity().onBackPressed()
+        }
 
         populateStats(view)
         drawChart(view)
@@ -65,11 +72,10 @@ class OverallStatsFragment : Fragment() {
             .markerRadius(0f)
             .series(arrayOf(
                 AASeriesElement()
-                    .name("Score")
-                    .color(colors[1])
-                    .showInLegend(false)
-                    .lineWidth(3f)
-                    .data(arrayOf(3, 7, 2, 0, -2, 1, 2, -1, 4, 0)),
+                        .color(colors[1])
+                        .showInLegend(false)
+                        .lineWidth(3f)
+                        .data(arrayOf(3, 7, 2, 0, -2, 1, 2, -1, 4, 0)),
                 )
             )
         aaChartView.aa_drawChartWithChartModel(aaChartModel)

@@ -20,4 +20,8 @@
     <string name="putts_per_hole">Putts Per Hole</string>
     <string name="total_rounds">Total Rounds</string>
     <string name="last_10_scores">Last 10 Scores</string>
+    <string name="invalid_entries">Some Entries are Invalid</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel_confirmation">Are you sure you want to cancel?</string>
 </resources>
