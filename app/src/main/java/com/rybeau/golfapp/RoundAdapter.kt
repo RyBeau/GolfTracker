@@ -7,19 +7,32 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RoundAdapter(private val rounds: Array<Round>)
+class RoundAdapter(private val rounds: Array<Round>, private val onRoundListener: OnRoundListener)
     : RecyclerView.Adapter<RoundAdapter.RoundViewHolder>()
 {
-    class RoundViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    interface OnRoundListener{
+        fun onRoundClick(position: Int)
+    }
+
+    class RoundViewHolder(itemView: View, val onRoundListener: OnRoundListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
         val date: TextView = itemView.findViewById<TextView>(R.id.date)
         val score: TextView = itemView.findViewById<TextView>(R.id.score)
         val averagePutts: TextView = itemView.findViewById<TextView>(R.id.averagePutts)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(view: View?) {
+            onRoundListener.onRoundClick(adapterPosition)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoundViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.round_item, parent.findViewById(R.id.roundsView), false)
-        return RoundViewHolder(view)
+        return RoundViewHolder(view, onRoundListener)
     }
 
     override fun onBindViewHolder(viewHolder: RoundViewHolder, position: Int) {

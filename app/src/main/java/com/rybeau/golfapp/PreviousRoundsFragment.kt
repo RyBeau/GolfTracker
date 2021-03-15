@@ -1,5 +1,7 @@
 package com.rybeau.golfapp
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +14,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 
-class PreviousRoundsFragment : Fragment() {
+class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
 
     private val rounds = arrayOf(
         Round("9/1/2020", "-3", 2),
@@ -52,11 +54,36 @@ class PreviousRoundsFragment : Fragment() {
             requireActivity().onBackPressed()
         }
 
-        val roundAdapter = RoundAdapter(rounds)
+        val roundAdapter = RoundAdapter(rounds, this)
         val recyclerView: RecyclerView = view.findViewById(R.id.roundsView)
         recyclerView.apply{
             layoutManager = LinearLayoutManager(activity)
             adapter = roundAdapter
         }
+    }
+
+    override fun onRoundClick(position: Int) {
+        val options = arrayOf(getString(R.string.message))
+        val builder = AlertDialog.Builder(activity)
+        builder.setItems(options) { _, optionId ->
+            dispatchActon(optionId, rounds[position])
+        }
+        builder.show()
+    }
+
+    private fun dispatchActon(optionId: Int, round: Round) {
+        when (optionId) {
+            0 -> textAction(round)
+        }
+    }
+
+    private fun textAction(round : Round){
+        val intent = Intent(Intent.ACTION_SEND)
+        val textContent = "I scored ${round.score} in golf on ${round.date} with an average of ${round.averagePutts} putts per hole"
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_using))
+        intent.putExtra(Intent.EXTRA_TEXT, textContent)
+
+        startActivity(Intent.createChooser(intent, getString(R.string.share_using)))
     }
 }
