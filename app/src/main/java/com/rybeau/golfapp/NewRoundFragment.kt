@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
@@ -49,7 +50,7 @@ class NewRoundFragment : Fragment() {
 
     private fun enterNewRound(view: View){
         if(validateEntries(view)){
-            Navigation.createNavigateOnClickListener(R.id.action_newRoundFragment_to_previousRoundsFragment, null )
+            findNavController().navigate(R.id.action_newRoundFragment_to_previousRoundsFragment)
         } else {
             Toast.makeText(activity, getString(R.string.invalid_entries), Toast.LENGTH_LONG).show()
         }
@@ -57,16 +58,16 @@ class NewRoundFragment : Fragment() {
 
     private fun validateEntries(view: View): Boolean{
         var valid = true
-//        for (i in 1..numHoles){
-//            val par = view.findViewWithTag<EditText>("par$i")
-//            val score = view.findViewWithTag<EditText>("score$i")
-//            val putts = view.findViewWithTag<EditText>("putts$i")
-//
-//            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
-//                valid = false
-//                break
-//            }
-//        }
+        for (i in 1..numHoles){
+            val par = view.findViewWithTag<EditText>("par$i")
+            val score = view.findViewWithTag<EditText>("score$i")
+            val putts = view.findViewWithTag<EditText>("putts$i")
+
+            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
+                valid = false
+                break
+            }
+        }
         return valid
     }
 
