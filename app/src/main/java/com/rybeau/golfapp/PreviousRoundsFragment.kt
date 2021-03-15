@@ -63,7 +63,7 @@ class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
     }
 
     override fun onRoundClick(position: Int) {
-        val options = arrayOf(getString(R.string.message))
+        val options = arrayOf(getString(R.string.share))
         val builder = AlertDialog.Builder(activity)
         builder.setItems(options) { _, optionId ->
             dispatchActon(optionId, rounds[position])
