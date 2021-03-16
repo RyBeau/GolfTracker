@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Application de Golf</string>
+    <string name="overall_stats">Statistiques Générales</string>
+    <string name="new_round">Nouveau Tour</string>
+    <string name="previous_rounds">Tours Précédents</string>
+    <string name="eighteen_holes">18 Trous</string>
+    <string name="nine_holes">9 Trous</string>
+    <string name="holes_played">Trous Joués:</string>
+    <string name="hole">Trou</string>
+    <string name="score">Pointage</string>
+    <string name="add_round">Ajouter un Tour</string>
+    <string name="cancel">Annuler</string>
+    <string name="back">Revenir</string>
+    <string name="average_score">Pointage Moyen</string>
+    <string name="invalid_entries">Certaines entrées sont invalides</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="cancel_confirmation">Es-tu sûre de vouloir annuler?</string>
+    <string name="share">Partager</string>
+    <string name="share_subject">Ma Ronde de Golf</string>
+    <string name="share_using">Partager en Utilisant?</string>
+    <string name="putts_per_hole">Putts par Trou</string>
+    <string name="last_10_scores">10 Derniers Pointages</string>
+    <string name="average_putts">Putts Moyens</string>
+    <string name="total_rounds">Nombre Total de Tours</string>
+    <string name="date">Date</string>
+    <string name="handicap">Handicap de Jeu</string>
+</resources>

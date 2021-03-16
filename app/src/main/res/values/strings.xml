@@ -7,9 +7,9 @@
     <string name="nine_holes">9 Holes</string>
     <string name="holes_played">Holes Played:</string>
     <string name="hole">Hole</string>
-    <string name="par">Par</string>
+    <string name="par" translatable="false">Par</string>
     <string name="score">Score</string>
-    <string name="putts">Putts</string>
+    <string name="putts" translatable="false">Putts</string>
     <string name="add_round">Add Round</string>
     <string name="cancel">Cancel</string>
     <string name="average_putts">Average Putts</string>
