@@ -7,16 +7,16 @@
     <string name="nine_holes">9 Holes</string>
     <string name="holes_played">Holes Played:</string>
     <string name="hole">Hole</string>
-    <string name="par">Par</string>
+    <string name="par" translatable="false">Par</string>
     <string name="score">Score</string>
-    <string name="putts">Putts</string>
+    <string name="putts" translatable="false">Putts</string>
     <string name="add_round">Add Round</string>
     <string name="cancel">Cancel</string>
     <string name="average_putts">Average Putts</string>
     <string name="date">Date</string>
     <string name="back">Back</string>
     <string name="average_score">Average Score</string>
-    <string name="handicap">Handicap</string>
+    <string name="handicap" translatable="false">Handicap</string>
     <string name="putts_per_hole">Putts Per Hole</string>
     <string name="total_rounds">Total Rounds</string>
     <string name="last_10_scores">Last 10 Scores</string>
