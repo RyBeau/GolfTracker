@@ -1,8 +1,11 @@
 package com.rybeau.golfapp
 
+import android.animation.LayoutTransition
 import android.app.AlertDialog
 import android.os.Bundle
 import android.service.autofill.Validators.not
+import android.transition.TransitionInflater
+import android.transition.TransitionManager
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -15,6 +18,16 @@ import com.google.android.material.chip.Chip
 class NewRoundFragment : Fragment() {
 
     private var numHoles: Int = 9
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        allowReturnTransitionOverlap = false
+        allowEnterTransitionOverlap = false
+
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide_in)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +63,8 @@ class NewRoundFragment : Fragment() {
 
     private fun enterNewRound(view: View){
         if(validateEntries(view)){
+            val inflater = TransitionInflater.from(requireContext())
+            returnTransition = inflater.inflateTransition(R.transition.slide_out)
             findNavController().navigate(R.id.action_newRoundFragment_to_previousRoundsFragment)
         } else {
             Toast.makeText(activity, getString(R.string.invalid_entries), Toast.LENGTH_LONG).show()
