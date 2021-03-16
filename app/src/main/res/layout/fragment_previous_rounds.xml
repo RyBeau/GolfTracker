@@ -83,18 +83,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/roundsView"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scrollIndicators="top|bottom"
+        app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/roundsView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollIndicators="top|bottom">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/backButton"
