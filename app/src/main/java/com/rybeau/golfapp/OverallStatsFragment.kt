@@ -10,15 +10,11 @@ import android.widget.Button
 import android.widget.TextView
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 
-class OverallStatsFragment : Fragment() {
+class OverallStatsFragment : TransitionFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        allowReturnTransitionOverlap = false
-        allowEnterTransitionOverlap = false
-
-        val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 

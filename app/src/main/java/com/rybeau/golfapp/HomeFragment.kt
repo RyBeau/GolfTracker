@@ -9,16 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
 
-class HomeFragment : Fragment() {
+class HomeFragment : TransitionFragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        allowReturnTransitionOverlap = false
-        allowEnterTransitionOverlap = false
-
-        val inflater = TransitionInflater.from(requireContext())
         exitTransition = inflater.inflateTransition(R.transition.slide_out)
     }
 

@@ -15,17 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 
-class NewRoundFragment : Fragment() {
+class NewRoundFragment : TransitionFragment() {
 
     private var numHoles: Int = 9
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        allowReturnTransitionOverlap = false
-        allowEnterTransitionOverlap = false
-
-        val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
@@ -63,7 +59,6 @@ class NewRoundFragment : Fragment() {
 
     private fun enterNewRound(view: View){
         if(validateEntries(view)){
-            val inflater = TransitionInflater.from(requireContext())
             returnTransition = inflater.inflateTransition(R.transition.slide_out)
             findNavController().navigate(R.id.action_newRoundFragment_to_previousRoundsFragment)
         } else {

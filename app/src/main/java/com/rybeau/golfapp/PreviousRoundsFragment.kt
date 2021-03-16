@@ -15,7 +15,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 
-class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
+class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListener {
 
     private val rounds = arrayOf(
         Round("9/1/2020", "-3", 2),
@@ -41,10 +41,6 @@ class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        allowReturnTransitionOverlap = false
-        allowEnterTransitionOverlap = false
-
-        val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
