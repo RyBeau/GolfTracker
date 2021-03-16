@@ -3,6 +3,7 @@ package com.rybeau.golfapp
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,16 @@ class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
         Round("2/1/2020", "-5", 1),
         Round("1/1/2020", "+1", 3),
     )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        allowReturnTransitionOverlap = false
+        allowEnterTransitionOverlap = false
+
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide_in)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
