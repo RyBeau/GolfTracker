@@ -26,4 +26,5 @@
     <string name="total_rounds">Nombre Total de Tours</string>
     <string name="date">Date</string>
     <string name="handicap">Handicap de Jeu</string>
+    <string name="golf_ball_logo">Logo de balle de golf</string>
 </resources>

@@ -27,4 +27,5 @@
     <string name="share">Share</string>
     <string name="share_subject">My Golf Round</string>
     <string name="share_using">Share Using?</string>
+    <string name="golf_ball_logo">Golf Ball Logo</string>
 </resources>
