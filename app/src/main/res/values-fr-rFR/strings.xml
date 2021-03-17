@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Application de Golf</string>
+    <string name="app_name">Le Golf Traqueur</string>
     <string name="overall_stats">Statistiques Générales</string>
     <string name="new_round">Nouveau Tour</string>
     <string name="previous_rounds">Tours Précédents</string>
@@ -26,4 +26,5 @@
     <string name="total_rounds">Nombre Total de Tours</string>
     <string name="date">Date</string>
     <string name="handicap">Handicap de Jeu</string>
+    <string name="golf_ball_logo">Logo de balle de golf</string>
 </resources>

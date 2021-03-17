@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Golf App</string>
+    <string name="app_name">Golf Tracker</string>
     <string name="overall_stats">Overall Stats</string>
     <string name="new_round">New Round</string>
     <string name="previous_rounds">Previous Rounds</string>
@@ -27,4 +27,5 @@
     <string name="share">Share</string>
     <string name="share_subject">My Golf Round</string>
     <string name="share_using">Share Using?</string>
+    <string name="golf_ball_logo">Golf Ball Logo</string>
 </resources>
