@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewManager
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +41,8 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.PREVIOUS_ROUNDS)
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
@@ -56,13 +58,14 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
         super.onViewCreated(view, savedInstanceState)
 
         val backButton = view.findViewById<Button>(R.id.backButton)
+        val recyclerView: RecyclerView = view.findViewById(R.id.roundsView)
 
         backButton.setOnClickListener{
             requireActivity().onBackPressed()
         }
 
         val roundAdapter = RoundAdapter(rounds, this)
-        val recyclerView: RecyclerView = view.findViewById(R.id.roundsView)
+
         recyclerView.apply{
             layoutManager = LinearLayoutManager(activity)
             adapter = roundAdapter

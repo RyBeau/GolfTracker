@@ -21,7 +21,8 @@ class NewRoundFragment : TransitionFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.NEW_ROUND)
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
@@ -45,7 +46,7 @@ class NewRoundFragment : TransitionFragment() {
             enterNewRound(view)
         }
         cancelButton.setOnClickListener{
-            cancelConfirmation()
+            requireActivity().onBackPressed()
         }
         nineButton.setOnClickListener{
             updateHoles(9)
@@ -81,11 +82,13 @@ class NewRoundFragment : TransitionFragment() {
         return valid
     }
 
-    private fun cancelConfirmation(){
+    private fun cancelConfirmation(view: View){
         val builder = AlertDialog.Builder(activity)
         builder.setMessage(getString(R.string.cancel_confirmation))
                 .setCancelable(false)
                 .setPositiveButton(R.string.yes) { _, _ ->
+                    val recyclerView = view.findViewById<RecyclerView>(R.id.inputView)
+                    recyclerView.visibility = View.GONE
                     requireActivity().onBackPressed()
                 }
                 .setNegativeButton(R.string.no){ dialog, _ ->

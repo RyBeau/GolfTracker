@@ -14,7 +14,8 @@ class OverallStatsFragment : TransitionFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.OVERALL_STATS)
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 

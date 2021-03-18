@@ -14,7 +14,8 @@ class HomeFragment : TransitionFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.HOME)
         exitTransition = inflater.inflateTransition(R.transition.slide_out)
     }
 
