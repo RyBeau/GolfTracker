@@ -10,7 +10,7 @@ open class TransitionFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inflater = TransitionInflater.from(requireContext())
+        inflater = TransitionInflater.from(context)
         allowReturnTransitionOverlap = false
         allowEnterTransitionOverlap = false
     }
