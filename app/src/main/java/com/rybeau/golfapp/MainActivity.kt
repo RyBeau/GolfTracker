@@ -28,18 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         when(location){
             Location.NEW_ROUND -> {
-                val builder = AlertDialog.Builder(this)
-                builder.setMessage(getString(R.string.cancel_confirmation))
-                        .setCancelable(false)
-                        .setPositiveButton(R.string.yes) { _, _ ->
-                            removeRecycleViewer(R.id.inputView)
-                            super.onBackPressed()
-                        }
-                        .setNegativeButton(R.string.no){ dialog, _ ->
-                            dialog.dismiss()
-                        }
-                val alert = builder.create()
-                alert.show()
+                onBackNewRound()
             }
             Location.PREVIOUS_ROUNDS -> {
                 removeRecycleViewer(R.id.roundsView)
@@ -57,6 +46,21 @@ class MainActivity : AppCompatActivity() {
 
     fun getLocation(): Location {
         return location
+    }
+
+    private fun onBackNewRound(){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(getString(R.string.cancel_confirmation))
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes) { _, _ ->
+                    removeRecycleViewer(R.id.inputView)
+                    super.onBackPressed()
+                }
+                .setNegativeButton(R.string.no){ dialog, _ ->
+                    dialog.dismiss()
+                }
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun removeRecycleViewer(id : Int) {
