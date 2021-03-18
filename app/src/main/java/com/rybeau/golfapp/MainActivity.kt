@@ -26,22 +26,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (location == Location.NEW_ROUND) {
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage(getString(R.string.cancel_confirmation))
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.yes) { _, _ ->
-                        removeRecycleViewer(R.id.inputView)
-                        super.onBackPressed()
-                    }
-                    .setNegativeButton(R.string.no){ dialog, _ ->
-                        dialog.dismiss()
-                    }
-            val alert = builder.create()
-            alert.show()
-        } else if (location == Location.PREVIOUS_ROUNDS){
-            removeRecycleViewer(R.id.roundsView)
-            super.onBackPressed()
+        when(location){
+            Location.NEW_ROUND -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage(getString(R.string.cancel_confirmation))
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.yes) { _, _ ->
+                            removeRecycleViewer(R.id.inputView)
+                            super.onBackPressed()
+                        }
+                        .setNegativeButton(R.string.no){ dialog, _ ->
+                            dialog.dismiss()
+                        }
+                val alert = builder.create()
+                alert.show()
+            }
+            Location.PREVIOUS_ROUNDS -> {
+                removeRecycleViewer(R.id.roundsView)
+                super.onBackPressed()
+            }
+            else -> {
+                super.onBackPressed()
+            }
         }
     }
 
