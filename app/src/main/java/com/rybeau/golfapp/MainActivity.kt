@@ -40,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun removeRecycleViewer(id : Int) {
+        val recyclerView = findViewById<RecyclerView>(id)
+        recyclerView?.visibility = View.GONE
+    }
+
     fun setLocation(currentLocation: Location) {
         location = currentLocation
     }
@@ -61,10 +66,5 @@ class MainActivity : AppCompatActivity() {
                 }
         val alert = builder.create()
         alert.show()
-    }
-
-    private fun removeRecycleViewer(id : Int) {
-        val recyclerView = findViewById<RecyclerView>(id)
-        recyclerView?.visibility = View.GONE
     }
 }
