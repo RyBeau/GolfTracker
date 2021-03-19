@@ -3,10 +3,12 @@ package com.rybeau.golfapp
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewManager
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +16,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 
-class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
+class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListener {
 
     private val rounds = arrayOf(
         Round("9/1/2020", "-3", 2),
@@ -37,6 +39,13 @@ class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
         Round("1/1/2020", "+1", 3),
     )
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.PREVIOUS_ROUNDS)
+        enterTransition = inflater.inflateTransition(R.transition.slide_in)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,13 +58,14 @@ class PreviousRoundsFragment : Fragment(), RoundAdapter.OnRoundListener {
         super.onViewCreated(view, savedInstanceState)
 
         val backButton = view.findViewById<Button>(R.id.backButton)
+        val recyclerView: RecyclerView = view.findViewById(R.id.roundsView)
 
         backButton.setOnClickListener{
             requireActivity().onBackPressed()
         }
 
         val roundAdapter = RoundAdapter(rounds, this)
-        val recyclerView: RecyclerView = view.findViewById(R.id.roundsView)
+
         recyclerView.apply{
             layoutManager = LinearLayoutManager(activity)
             adapter = roundAdapter

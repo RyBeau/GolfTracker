@@ -1,17 +1,23 @@
 package com.rybeau.golfapp
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import android.util.TypedValue
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 
-class OverallStatsFragment : Fragment() {
+class OverallStatsFragment : TransitionFragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.OVERALL_STATS)
+        enterTransition = inflater.inflateTransition(R.transition.slide_in)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

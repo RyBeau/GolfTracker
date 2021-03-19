@@ -1,6 +1,7 @@
 package com.rybeau.golfapp
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
 
-class HomeFragment : Fragment() {
+class HomeFragment : TransitionFragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.HOME)
+        exitTransition = inflater.inflateTransition(R.transition.slide_out)
     }
 
     override fun onCreateView(

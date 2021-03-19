@@ -1,8 +1,11 @@
 package com.rybeau.golfapp
 
+import android.animation.LayoutTransition
 import android.app.AlertDialog
 import android.os.Bundle
 import android.service.autofill.Validators.not
+import android.transition.TransitionInflater
+import android.transition.TransitionManager
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -12,9 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 
-class NewRoundFragment : Fragment() {
+class NewRoundFragment : TransitionFragment() {
 
     private var numHoles: Int = 9
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.NEW_ROUND)
+        enterTransition = inflater.inflateTransition(R.transition.slide_in)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +46,7 @@ class NewRoundFragment : Fragment() {
             enterNewRound(view)
         }
         cancelButton.setOnClickListener{
-            cancelConfirmation()
+            requireActivity().onBackPressed()
         }
         nineButton.setOnClickListener{
             updateHoles(9)
@@ -50,6 +60,8 @@ class NewRoundFragment : Fragment() {
 
     private fun enterNewRound(view: View){
         if(validateEntries(view)){
+            (activity as MainActivity).removeRecycleViewer(R.id.inputView)
+            returnTransition = inflater.inflateTransition(R.transition.slide_out)
             findNavController().navigate(R.id.action_newRoundFragment_to_previousRoundsFragment)
         } else {
             Toast.makeText(activity, getString(R.string.invalid_entries), Toast.LENGTH_LONG).show()
@@ -58,24 +70,26 @@ class NewRoundFragment : Fragment() {
 
     private fun validateEntries(view: View): Boolean{
         var valid = true
-        for (i in 1..numHoles){
-            val par = view.findViewWithTag<EditText>("par$i")
-            val score = view.findViewWithTag<EditText>("score$i")
-            val putts = view.findViewWithTag<EditText>("putts$i")
-
-            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
-                valid = false
-                break
-            }
-        }
+//        for (i in 1..numHoles){
+//            val par = view.findViewWithTag<EditText>("par$i")
+//            val score = view.findViewWithTag<EditText>("score$i")
+//            val putts = view.findViewWithTag<EditText>("putts$i")
+//
+//            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
+//                valid = false
+//                break
+//            }
+//        }
         return valid
     }
 
-    private fun cancelConfirmation(){
+    private fun cancelConfirmation(view: View){
         val builder = AlertDialog.Builder(activity)
         builder.setMessage(getString(R.string.cancel_confirmation))
                 .setCancelable(false)
                 .setPositiveButton(R.string.yes) { _, _ ->
+                    val recyclerView = view.findViewById<RecyclerView>(R.id.inputView)
+                    recyclerView.visibility = View.GONE
                     requireActivity().onBackPressed()
                 }
                 .setNegativeButton(R.string.no){ dialog, _ ->
