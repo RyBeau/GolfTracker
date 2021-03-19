@@ -60,6 +60,7 @@ class NewRoundFragment : TransitionFragment() {
 
     private fun enterNewRound(view: View){
         if(validateEntries(view)){
+            (activity as MainActivity).removeRecycleViewer(R.id.inputView)
             returnTransition = inflater.inflateTransition(R.transition.slide_out)
             findNavController().navigate(R.id.action_newRoundFragment_to_previousRoundsFragment)
         } else {
@@ -69,16 +70,16 @@ class NewRoundFragment : TransitionFragment() {
 
     private fun validateEntries(view: View): Boolean{
         var valid = true
-        for (i in 1..numHoles){
-            val par = view.findViewWithTag<EditText>("par$i")
-            val score = view.findViewWithTag<EditText>("score$i")
-            val putts = view.findViewWithTag<EditText>("putts$i")
-
-            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
-                valid = false
-                break
-            }
-        }
+//        for (i in 1..numHoles){
+//            val par = view.findViewWithTag<EditText>("par$i")
+//            val score = view.findViewWithTag<EditText>("score$i")
+//            val putts = view.findViewWithTag<EditText>("putts$i")
+//
+//            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
+//                valid = false
+//                break
+//            }
+//        }
         return valid
     }
 
