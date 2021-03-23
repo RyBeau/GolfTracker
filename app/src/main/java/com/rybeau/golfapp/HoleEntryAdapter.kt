@@ -1,16 +1,24 @@
 package com.rybeau.golfapp
 
 import android.content.Context
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 
-class HoleEntryAdapter(context: Context, private val holes: IntArray) : BaseAdapter() {
+class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
+
+    private val parValues: MutableList<String?> = MutableList<String?>(holes){null}
+    private val scoreValues: MutableList<String?> = MutableList<String?>(holes){null}
+    private val puttValues: MutableList<String?> = MutableList<String?>(holes){null}
 
     class HoleEntryViewHolder(itemView: View) {
         val holeNumber: TextView = itemView.findViewById<TextView>(R.id.holeNumber)
@@ -20,15 +28,23 @@ class HoleEntryAdapter(context: Context, private val holes: IntArray) : BaseAdap
     }
 
     override fun getCount(): Int {
-        return holes.size
+        return parValues.size
     }
 
     override fun getItem(position: Int): Any {
-        return holes[position]
+        return List<String?>(3){parValues[position]; scoreValues[position]; puttValues[position]}
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
+    }
+
+    override fun getViewTypeCount(): Int {
+        return count
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
@@ -46,14 +62,53 @@ class HoleEntryAdapter(context: Context, private val holes: IntArray) : BaseAdap
         return view
     }
 
+    fun getParValues(): List<String?> {
+        return parValues
+    }
+
+    fun getScoreValues(): List<String?> {
+        return scoreValues
+    }
+
+    fun getPuttsValues(): List<String?> {
+        return puttValues
+    }
+
     private fun fillViewHolder(viewHolder: HoleEntryViewHolder, position: Int) {
-        viewHolder.holeNumber.text = holes[position].toString()
-        viewHolder.parInput.tag = "par${holes[position]}"
+        viewHolder.holeNumber.text = (position + 1).toString()
+        if (parValues[position] != null){
+            viewHolder.parInput.setText(parValues[position].toString())
+        }
         viewHolder.parInput.filters = arrayOf(HoleEntryFilter(1, 5))
-        viewHolder.scoreInput.tag = "score${holes[position]}"
+        viewHolder.parInput.doAfterTextChanged {
+            val text = viewHolder.parInput.text
+            if (parValues[position] != text.toString()){
+                parValues[position] = text.toString()
+                Log.d("Testing", "Par for hole $position is ${parValues[position]}")
+            }
+        }
+        if (scoreValues[position] != null){
+            viewHolder.scoreInput.setText(scoreValues[position].toString())
+        }
         viewHolder.scoreInput.filters = arrayOf(HoleEntryFilter(1, 20))
-        viewHolder.puttsInput.tag = "putts${holes[position]}"
+        viewHolder.scoreInput.doAfterTextChanged {
+            val text = viewHolder.scoreInput.text
+            if (scoreValues[position] != text.toString()){
+                scoreValues[position] = text.toString()
+                Log.d("Testing", "Score for hole $position is ${scoreValues[position]}")
+            }
+        }
+        if (puttValues[position] != null){
+            viewHolder.puttsInput.setText(puttValues[position].toString())
+        }
         viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(1, 20))
+        viewHolder.puttsInput.doAfterTextChanged {
+            val text = viewHolder.puttsInput.text
+            if (puttValues[position] != text.toString()){
+                puttValues[position] = text.toString()
+                Log.d("Testing", "Putts for hole $position is ${puttValues[position]}")
+            }
+        }
     }
 }
 
