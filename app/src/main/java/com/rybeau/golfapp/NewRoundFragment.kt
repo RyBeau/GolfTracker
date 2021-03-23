@@ -68,6 +68,9 @@ class NewRoundFragment : TransitionFragment() {
         val parValues = (listView.adapter as HoleEntryAdapter).getParValues()
         val scoreValues = (listView.adapter as HoleEntryAdapter).getScoreValues()
         val puttsValues = (listView.adapter as HoleEntryAdapter).getPuttsValues()
+        if(null in parValues || null in scoreValues || null in puttsValues){
+            valid = false
+        }
         Log.d("Testing", "Par Values: $parValues\n Score Values: $scoreValues\n Putts Values: $puttsValues")
         return valid
     }
