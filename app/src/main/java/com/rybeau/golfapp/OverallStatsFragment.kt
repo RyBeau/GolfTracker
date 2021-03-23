@@ -14,14 +14,13 @@ class OverallStatsFragment : TransitionFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val mainActivity = activity as MainActivity
-        mainActivity.setLocation(MainActivity.Location.OVERALL_STATS)
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.OVERALL_STATS)
         return inflater.inflate(R.layout.fragment_overall_stats, container, false)
     }
 

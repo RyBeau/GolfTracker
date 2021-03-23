@@ -41,8 +41,6 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val mainActivity = activity as MainActivity
-        mainActivity.setLocation(MainActivity.Location.PREVIOUS_ROUNDS)
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
@@ -50,7 +48,8 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val mainActivity = activity as MainActivity
+        mainActivity.setLocation(MainActivity.Location.PREVIOUS_ROUNDS)
         return inflater.inflate(R.layout.fragment_previous_rounds, container, false)
     }
 
