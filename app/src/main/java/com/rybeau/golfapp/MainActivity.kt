@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ListView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -21,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
     }
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 onBackNewRound()
             }
             Location.PREVIOUS_ROUNDS -> {
-                removeRecycleViewer(R.id.roundsView)
+                removeListView(R.id.roundsView)
                 super.onBackPressed()
             }
             else -> {
@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun removeRecycleViewer(id : Int) {
-        val recyclerView = findViewById<RecyclerView>(id)
-        recyclerView?.visibility = View.GONE
+    fun removeListView(id : Int) {
+        val view = findViewById<View>(id)
+        view?.visibility = View.GONE
     }
 
     fun setLocation(currentLocation: Location) {
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage(getString(R.string.cancel_confirmation))
                 .setCancelable(false)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    removeRecycleViewer(R.id.inputView)
+                    removeListView(R.id.inputView)
                     super.onBackPressed()
                 }
                 .setNegativeButton(R.string.no){ dialog, _ ->
