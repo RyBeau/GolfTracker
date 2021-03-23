@@ -82,10 +82,10 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
         viewHolder.parInput.filters = arrayOf(HoleEntryFilter(1, 5))
         viewHolder.parInput.doAfterTextChanged {
             val text = viewHolder.parInput.text.toString()
-            if (parValues[position] != text){
-                parValues[position] = text
-            } else if (text == ""){
+            if (text == ""){
                 parValues[position] = null
+            } else if (parValues[position] != text){
+                parValues[position] = text
             }
         }
         if (scoreValues[position] != null){
@@ -94,10 +94,10 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
         viewHolder.scoreInput.filters = arrayOf(HoleEntryFilter(1, 20))
         viewHolder.scoreInput.doAfterTextChanged {
             val text = viewHolder.scoreInput.text.toString()
-            if (scoreValues[position] != text){
-                scoreValues[position] = text
-            } else if (text == ""){
+            if (text == "") {
                 scoreValues[position] = null
+            } else if (scoreValues[position] != text) {
+                scoreValues[position] = text
             }
         }
         if (puttValues[position] != null){
@@ -106,10 +106,10 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
         viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(1, 20))
         viewHolder.puttsInput.doAfterTextChanged {
             val text = viewHolder.puttsInput.text.toString()
-            if (puttValues[position] != text){
-                puttValues[position] = text
-            } else if (text == ""){
+            if (text == ""){
                 puttValues[position] = null
+            } else if (puttValues[position] != text){
+                puttValues[position] = text
             }
         }
     }
