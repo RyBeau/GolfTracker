@@ -64,16 +64,11 @@ class NewRoundFragment : TransitionFragment() {
 
     private fun validateEntries(view: View): Boolean{
         var valid = true
-        for (i in 1..numHoles){
-            val par = view.findViewWithTag<EditText>("par$i")
-            val score = view.findViewWithTag<EditText>("score$i")
-            val putts = view.findViewWithTag<EditText>("putts$i")
-
-            if (par.text.toString().isEmpty() || score.text.toString().isEmpty() || putts.text.toString().isEmpty()){
-                valid = false
-                break
-            }
-        }
+        val listView = view.findViewById<ListView>(R.id.inputView)
+        val parValues = (listView.adapter as HoleEntryAdapter).getParValues()
+        val scoreValues = (listView.adapter as HoleEntryAdapter).getScoreValues()
+        val puttsValues = (listView.adapter as HoleEntryAdapter).getPuttsValues()
+        Log.d("Testing", "Par Values: $parValues\n Score Values: $scoreValues\n Putts Values: $puttsValues")
         return valid
     }
 
@@ -86,6 +81,6 @@ class NewRoundFragment : TransitionFragment() {
 
     private fun createInput(view: View){
         val listView = view.findViewById<ListView>(R.id.inputView)
-        listView.adapter = HoleEntryAdapter(requireContext(), IntArray(numHoles){it + 1})
+        listView.adapter = HoleEntryAdapter(requireContext(), numHoles)
     }
 }
