@@ -84,7 +84,6 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
             val text = viewHolder.parInput.text
             if (parValues[position] != text.toString()){
                 parValues[position] = text.toString()
-                Log.d("Testing", "Par for hole $position is ${parValues[position]}")
             }
         }
         if (scoreValues[position] != null){
@@ -95,7 +94,6 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
             val text = viewHolder.scoreInput.text
             if (scoreValues[position] != text.toString()){
                 scoreValues[position] = text.toString()
-                Log.d("Testing", "Score for hole $position is ${scoreValues[position]}")
             }
         }
         if (puttValues[position] != null){
@@ -106,7 +104,6 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
             val text = viewHolder.puttsInput.text
             if (puttValues[position] != text.toString()){
                 puttValues[position] = text.toString()
-                Log.d("Testing", "Putts for hole $position is ${puttValues[position]}")
             }
         }
     }
