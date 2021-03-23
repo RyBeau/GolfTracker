@@ -97,16 +97,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ListView
                 android:id="@+id/inputView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fadeScrollbars="false"
-                android:scrollIndicators="top|bottom"
-                android:scrollbarSize="1dp"
-                android:scrollbarStyle="outsideOverlay"
-                android:scrollbarThumbVertical="?attr/colorSecondary"
-                android:scrollbars="vertical" />
+                android:divider="@null"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
