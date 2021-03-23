@@ -81,9 +81,11 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
         }
         viewHolder.parInput.filters = arrayOf(HoleEntryFilter(1, 5))
         viewHolder.parInput.doAfterTextChanged {
-            val text = viewHolder.parInput.text
-            if (parValues[position] != text.toString()){
-                parValues[position] = text.toString()
+            val text = viewHolder.parInput.text.toString()
+            if (parValues[position] != text){
+                parValues[position] = text
+            } else if (text == ""){
+                parValues[position] = null
             }
         }
         if (scoreValues[position] != null){
@@ -91,9 +93,11 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
         }
         viewHolder.scoreInput.filters = arrayOf(HoleEntryFilter(1, 20))
         viewHolder.scoreInput.doAfterTextChanged {
-            val text = viewHolder.scoreInput.text
-            if (scoreValues[position] != text.toString()){
-                scoreValues[position] = text.toString()
+            val text = viewHolder.scoreInput.text.toString()
+            if (scoreValues[position] != text){
+                scoreValues[position] = text
+            } else if (text == ""){
+                scoreValues[position] = null
             }
         }
         if (puttValues[position] != null){
@@ -101,9 +105,11 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
         }
         viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(1, 20))
         viewHolder.puttsInput.doAfterTextChanged {
-            val text = viewHolder.puttsInput.text
-            if (puttValues[position] != text.toString()){
-                puttValues[position] = text.toString()
+            val text = viewHolder.puttsInput.text.toString()
+            if (puttValues[position] != text){
+                puttValues[position] = text
+            } else if (text == ""){
+                puttValues[position] = null
             }
         }
     }
