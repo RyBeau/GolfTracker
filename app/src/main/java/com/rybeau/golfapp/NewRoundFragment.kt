@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
+import java.util.ArrayList
 
 class NewRoundFragment : TransitionFragment() {
 
@@ -50,6 +51,35 @@ class NewRoundFragment : TransitionFragment() {
         createInput(view)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putInt("Holes", numHoles)
+        val listViewAdapter = view?.findViewById<ListView>(R.id.inputView)?.adapter as HoleEntryAdapter
+        outState.putStringArrayList("Pars", listViewAdapter.getParValues() as ArrayList<String?>)
+        outState.putStringArrayList("Scores", listViewAdapter.getScoreValues() as ArrayList<String?>)
+        outState.putStringArrayList("Putts", listViewAdapter.getPuttValues() as ArrayList<String?>)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        val parValues: MutableList<String?>
+        val scoreValues: MutableList<String?>
+        val puttValues: MutableList<String?>
+
+        if (savedInstanceState?.containsKey("Holes") == true){
+            numHoles = savedInstanceState.getInt("Holes")
+        }
+
+        if (savedInstanceState?.containsKey("Pars") == true && savedInstanceState.containsKey("Scores") && savedInstanceState.containsKey("Putts")){
+                parValues = savedInstanceState.getStringArrayList("Pars") as MutableList<String?>
+                scoreValues = savedInstanceState.getStringArrayList("Scores") as MutableList<String?>
+                puttValues = savedInstanceState.getStringArrayList("Putts") as MutableList<String?>
+
+            createInput(requireView(), parValues, scoreValues, puttValues)
+        }
+    }
+
     private fun enterNewRound(view: View){
         if(validateEntries(view)){
             (activity as MainActivity).removeListView(R.id.inputView)
@@ -82,9 +112,9 @@ class NewRoundFragment : TransitionFragment() {
             val puttValues: MutableList<String?>
 
             if (holes == 9) {
-                parValues = listViewAdapter.getParValues().subList(0, numHoles) as MutableList
-                scoreValues = listViewAdapter.getScoreValues().subList(0, numHoles) as MutableList
-                puttValues = listViewAdapter.getPuttValues().subList(0, numHoles) as MutableList
+                parValues = listViewAdapter.getParValues().slice(0 until numHoles) as MutableList<String?>
+                scoreValues = listViewAdapter.getScoreValues().slice(0 until numHoles) as MutableList<String?>
+                puttValues = listViewAdapter.getPuttValues().slice(0 until numHoles) as MutableList<String?>
             } else {
                 parValues = (listViewAdapter.getParValues() + MutableList<String?>(holes/2){null}) as MutableList<String?>
                 scoreValues = (listViewAdapter.getScoreValues() + MutableList<String?>(holes/2){null}) as MutableList<String?>
