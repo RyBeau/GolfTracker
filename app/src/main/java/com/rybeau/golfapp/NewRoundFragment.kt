@@ -1,12 +1,10 @@
 package com.rybeau.golfapp
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 
 class NewRoundFragment : TransitionFragment() {
@@ -67,7 +65,7 @@ class NewRoundFragment : TransitionFragment() {
         val listView = view.findViewById<ListView>(R.id.inputView)
         val parValues = (listView.adapter as HoleEntryAdapter).getParValues()
         val scoreValues = (listView.adapter as HoleEntryAdapter).getScoreValues()
-        val puttsValues = (listView.adapter as HoleEntryAdapter).getPuttsValues()
+        val puttsValues = (listView.adapter as HoleEntryAdapter).getPuttValues()
         if(null in parValues || null in scoreValues || null in puttsValues){
             valid = false
         }
@@ -78,10 +76,28 @@ class NewRoundFragment : TransitionFragment() {
     private fun updateHoles(holes: Int) {
         if (holes != numHoles){
             numHoles = holes
-            this.view?.let { createInput(it) }
+            val listViewAdapter = view?.findViewById<ListView>(R.id.inputView)?.adapter as HoleEntryAdapter
+            val parValues: MutableList<String?>
+            val scoreValues: MutableList<String?>
+            val puttValues: MutableList<String?>
+
+            if (holes == 9) {
+                parValues = listViewAdapter.getParValues().subList(0, numHoles) as MutableList
+                scoreValues = listViewAdapter.getScoreValues().subList(0, numHoles) as MutableList
+                puttValues = listViewAdapter.getPuttValues().subList(0, numHoles) as MutableList
+            } else {
+                parValues = (listViewAdapter.getParValues() + MutableList<String?>(holes/2){null}) as MutableList<String?>
+                scoreValues = (listViewAdapter.getScoreValues() + MutableList<String?>(holes/2){null}) as MutableList<String?>
+                puttValues = (listViewAdapter.getPuttValues() + MutableList<String?>(holes/2){null}) as MutableList<String?>
+            }
+            this.view?.let { createInput(it, parValues, scoreValues, puttValues) }
         }
     }
 
+    private fun createInput(view: View, existingParValues: MutableList<String?>, existingScoreValues: MutableList<String?>, existingPuttValues: MutableList<String?>) {
+        val listView = view.findViewById<ListView>(R.id.inputView)
+        listView.adapter = HoleEntryAdapter(requireContext(), numHoles, existingParValues, existingScoreValues, existingPuttValues)
+    }
     private fun createInput(view: View){
         val listView = view.findViewById<ListView>(R.id.inputView)
         listView.adapter = HoleEntryAdapter(requireContext(), numHoles)

@@ -12,13 +12,15 @@ import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 
-class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
+class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableList<String?> = MutableList<String?>(holes){null},
+                       existingScoreValues: MutableList<String?> = MutableList<String?>(holes){null},
+                       existingPuttValues: MutableList<String?> = MutableList<String?>(holes){null}) : BaseAdapter() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
-    private val parValues: MutableList<String?> = MutableList<String?>(holes){null}
-    private val scoreValues: MutableList<String?> = MutableList<String?>(holes){null}
-    private val puttValues: MutableList<String?> = MutableList<String?>(holes){null}
+    private val parValues: MutableList<String?> = existingParValues
+    private val scoreValues: MutableList<String?> = existingScoreValues
+    private val puttValues: MutableList<String?> = existingPuttValues
 
     class HoleEntryViewHolder(itemView: View) {
         val holeNumber: TextView = itemView.findViewById<TextView>(R.id.holeNumber)
@@ -70,7 +72,7 @@ class HoleEntryAdapter(context: Context, holes: Int) : BaseAdapter() {
         return scoreValues
     }
 
-    fun getPuttsValues(): List<String?> {
+    fun getPuttValues(): List<String?> {
         return puttValues
     }
 
