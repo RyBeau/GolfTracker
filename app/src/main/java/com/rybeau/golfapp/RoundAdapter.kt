@@ -45,5 +45,6 @@ class RoundAdapter(private var rounds: List<Round>, private val onRoundListener:
 
     fun setData(newRounds: List<Round>){
         rounds = newRounds
+        notifyDataSetChanged()
     }
 }
