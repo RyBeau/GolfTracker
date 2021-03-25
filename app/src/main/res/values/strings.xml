@@ -29,4 +29,5 @@
     <string name="share_using">Share Using?</string>
     <string name="golf_ball_logo">Golf Ball Logo</string>
     <string name="delete">Delete</string>
+    <string name="delete_confirmation">Are you sure you want to delete the round?</string>
 </resources>
