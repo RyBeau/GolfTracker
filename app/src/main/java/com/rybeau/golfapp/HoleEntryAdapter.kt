@@ -12,9 +12,9 @@ import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 
-class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableList<String?> = MutableList<String?>(holes){null},
-                       existingScoreValues: MutableList<String?> = MutableList<String?>(holes){null},
-                       existingPuttValues: MutableList<String?> = MutableList<String?>(holes){null}) : BaseAdapter() {
+class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableList<String?> = MutableList(holes){null},
+                       existingScoreValues: MutableList<String?> = MutableList(holes){null},
+                       existingPuttValues: MutableList<String?> = MutableList(holes){null}) : BaseAdapter() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
