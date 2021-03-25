@@ -3,6 +3,7 @@
     package="com.rybeau.golfapp">
 
     <application
+        android:name=".GolfTrackerRoomApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_golf_ball"
         android:label="@string/app_name"
