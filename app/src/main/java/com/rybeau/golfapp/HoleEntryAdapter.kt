@@ -81,7 +81,7 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
         if (parValues[position] != null){
             viewHolder.parInput.setText(parValues[position].toString())
         }
-        viewHolder.parInput.filters = arrayOf(HoleEntryFilter(1, 5))
+        viewHolder.parInput.filters = arrayOf(HoleEntryFilter(3, 6))
         viewHolder.parInput.doAfterTextChanged {
             val text = viewHolder.parInput.text.toString()
             if (text == ""){
@@ -105,7 +105,7 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
         if (puttValues[position] != null){
             viewHolder.puttsInput.setText(puttValues[position].toString())
         }
-        viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(1, 20))
+        viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(0, 19))
         viewHolder.puttsInput.doAfterTextChanged {
             val text = viewHolder.puttsInput.text.toString()
             if (text == ""){
