@@ -7,7 +7,9 @@ import java.lang.IllegalArgumentException
 class RoundViewModel(private val roundRepository: RoundRepository): ViewModel() {
     val allRounds: LiveData<List<Round>> = roundRepository.allRounds.asLiveData()
     val totalRounds: LiveData<Int> = roundRepository.totalRounds.asLiveData()
-    val previous10Rounds: LiveData<List<Round>> = roundRepository.previous10Rounds.asLiveData()
+    val previous10Rounds: LiveData<List<Int>> = roundRepository.previous10RoundsScore.asLiveData()
+    val averageScore: LiveData<Double> = roundRepository.averageScore.asLiveData()
+    val averagePutts: LiveData<Double> = roundRepository.averagePutts.asLiveData()
 
     fun addRound(round: Round) = viewModelScope.launch {
         roundRepository.insert(round)
