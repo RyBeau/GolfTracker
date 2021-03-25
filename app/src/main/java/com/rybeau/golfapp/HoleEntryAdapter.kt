@@ -23,10 +23,10 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
     private val puttValues: MutableList<String?> = existingPuttValues
 
     class HoleEntryViewHolder(itemView: View) {
-        val holeNumber: TextView = itemView.findViewById<TextView>(R.id.holeNumber)
-        val parInput: EditText = itemView.findViewById<EditText>(R.id.parInput)
-        val scoreInput: EditText = itemView.findViewById<EditText>(R.id.scoreInput)
-        val puttsInput: EditText = itemView.findViewById<EditText>(R.id.puttsInput)
+        val holeNumber: TextView = itemView.findViewById(R.id.holeNumber)
+        val parInput: EditText = itemView.findViewById(R.id.parInput)
+        val scoreInput: EditText = itemView.findViewById(R.id.scoreInput)
+        val puttsInput: EditText = itemView.findViewById(R.id.puttsInput)
     }
 
     override fun getCount(): Int {
