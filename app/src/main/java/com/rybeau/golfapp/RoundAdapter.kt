@@ -38,7 +38,7 @@ class RoundAdapter(private var rounds: List<Round>, private val onRoundListener:
     override fun onBindViewHolder(viewHolder: RoundViewHolder, position: Int) {
         viewHolder.date.text = rounds[position].date
         viewHolder.score.text = rounds[position].score.toString()
-        viewHolder.averagePutts.text = rounds[position].averagePutts.toString()
+        viewHolder.averagePutts.text = String.format("%.1f", rounds[position].averagePutts)
     }
 
     override fun getItemCount() = rounds.size
