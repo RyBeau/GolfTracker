@@ -94,7 +94,7 @@ class NewRoundFragment : TransitionFragment() {
             if(validateEntries(parValues, scoreValues, puttsValues)){
                 @Suppress("UNCHECKED_CAST")
                 val round: Round = convertToRound(parValues as List<String>, scoreValues as List<String>, puttsValues as List<String>)
-                Log.d("Testing", "Score: ${round.score}, Date: ${round.date}, Putts: ${round.averagePutts}")
+                viewModel.addRound(round)
                 (activity as MainActivity).removeListView(R.id.inputView)
                 returnTransition = inflater.inflateTransition(R.transition.slide_out)
                 findNavController().navigate(R.id.action_newRoundFragment_to_previousRoundsFragment)
