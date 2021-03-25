@@ -8,9 +8,14 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 
 class OverallStatsFragment : TransitionFragment() {
+
+    private val viewModel: RoundViewModel by activityViewModels() {
+        RoundViewModelFactory((requireActivity().application as GolfTrackerRoomApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

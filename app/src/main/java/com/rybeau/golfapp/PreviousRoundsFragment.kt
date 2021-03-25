@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
 import android.widget.Button
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.text.DateFormat
@@ -17,6 +18,10 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 
 class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListener {
+
+    private val viewModel: RoundViewModel by activityViewModels() {
+        RoundViewModelFactory((requireActivity().application as GolfTrackerRoomApplication).repository)
+    }
 
     private val rounds = arrayOf(
         Round("9/1/2020", -3, 2.0),
