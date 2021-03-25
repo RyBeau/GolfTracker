@@ -16,9 +16,9 @@ class RoundAdapter(private var rounds: List<Round>, private val onRoundListener:
 
     class RoundViewHolder(itemView: View, val onRoundListener: OnRoundListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        val date: TextView = itemView.findViewById<TextView>(R.id.date)
-        val score: TextView = itemView.findViewById<TextView>(R.id.score)
-        val averagePutts: TextView = itemView.findViewById<TextView>(R.id.averagePutts)
+        val date: TextView = itemView.findViewById(R.id.date)
+        val score: TextView = itemView.findViewById(R.id.score)
+        val averagePutts: TextView = itemView.findViewById(R.id.averagePutts)
 
         init {
             itemView.setOnClickListener(this)
