@@ -6,7 +6,8 @@ import android.view.*
 import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewRoundFragment : TransitionFragment() {
 
@@ -81,7 +82,14 @@ class NewRoundFragment : TransitionFragment() {
     }
 
     private fun enterNewRound(view: View){
-        if(validateEntries(view)){
+        val listViewAdapter = view.findViewById<ListView>(R.id.inputView).adapter as HoleEntryAdapter
+        val parValues = listViewAdapter.getParValues()
+        val scoreValues = listViewAdapter.getScoreValues()
+        val puttsValues = listViewAdapter.getPuttValues()
+        if(validateEntries(parValues, scoreValues, puttsValues)){
+            @Suppress("UNCHECKED_CAST")
+            val round: Round = convertToRound(parValues as List<String>, scoreValues as List<String>, puttsValues as List<String>)
+            Log.d("Testing", "Score: ${round.score}, Date: ${round.date}, Putts: ${round.averagePutts}")
             (activity as MainActivity).removeListView(R.id.inputView)
             returnTransition = inflater.inflateTransition(R.transition.slide_out)
             findNavController().navigate(R.id.action_newRoundFragment_to_previousRoundsFragment)
@@ -90,17 +98,39 @@ class NewRoundFragment : TransitionFragment() {
         }
     }
 
-    private fun validateEntries(view: View): Boolean{
+    private fun validateEntries(parValues: List<String?>,scoreValues: List<String?>, puttsValues: List<String?>): Boolean{
         var valid = true
-        val listView = view.findViewById<ListView>(R.id.inputView)
-        val parValues = (listView.adapter as HoleEntryAdapter).getParValues()
-        val scoreValues = (listView.adapter as HoleEntryAdapter).getScoreValues()
-        val puttsValues = (listView.adapter as HoleEntryAdapter).getPuttValues()
+        @Suppress("UNCHECKED_CAST")
         if(null in parValues || null in scoreValues || null in puttsValues){
             valid = false
+        } else if (!scoresPossible(scoreValues as List<String>, puttsValues as List<String>)){
+            valid = false
         }
-        Log.d("Testing", "Par Values: $parValues\n Score Values: $scoreValues\n Putts Values: $puttsValues")
         return valid
+    }
+
+    private fun scoresPossible(scores: List<String>, putts: List<String>): Boolean{
+        for (i in scores.indices){
+            if((scores[i].toInt() - putts[i].toInt()) < 1){
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun convertToRound(parValues: List<String>, scoreValues: List<String>, puttsValues: List<String>): Round{
+        var totalPar = 0
+        var totalScore = 0
+        var totalPutts = 0
+        val totalHoles = parValues.size
+        val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val currentDateTime: String = simpleDateFormat.format(Date())
+        for (i in 0 until totalHoles){
+            totalPar += parValues[i].toInt()
+            totalScore += scoreValues[i].toInt()
+            totalPutts += puttsValues[i].toInt()
+        }
+        return Round(currentDateTime, totalScore - totalPar, totalPutts.toDouble() / totalHoles.toDouble())
     }
 
     private fun updateHoles(holes: Int) {

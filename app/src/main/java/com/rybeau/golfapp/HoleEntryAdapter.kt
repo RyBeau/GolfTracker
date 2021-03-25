@@ -12,9 +12,9 @@ import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 
-class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableList<String?> = MutableList<String?>(holes){null},
-                       existingScoreValues: MutableList<String?> = MutableList<String?>(holes){null},
-                       existingPuttValues: MutableList<String?> = MutableList<String?>(holes){null}) : BaseAdapter() {
+class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableList<String?> = MutableList(holes){null},
+                       existingScoreValues: MutableList<String?> = MutableList(holes){null},
+                       existingPuttValues: MutableList<String?> = MutableList(holes){null}) : BaseAdapter() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -23,10 +23,10 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
     private val puttValues: MutableList<String?> = existingPuttValues
 
     class HoleEntryViewHolder(itemView: View) {
-        val holeNumber: TextView = itemView.findViewById<TextView>(R.id.holeNumber)
-        val parInput: EditText = itemView.findViewById<EditText>(R.id.parInput)
-        val scoreInput: EditText = itemView.findViewById<EditText>(R.id.scoreInput)
-        val puttsInput: EditText = itemView.findViewById<EditText>(R.id.puttsInput)
+        val holeNumber: TextView = itemView.findViewById(R.id.holeNumber)
+        val parInput: EditText = itemView.findViewById(R.id.parInput)
+        val scoreInput: EditText = itemView.findViewById(R.id.scoreInput)
+        val puttsInput: EditText = itemView.findViewById(R.id.puttsInput)
     }
 
     override fun getCount(): Int {
@@ -81,7 +81,7 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
         if (parValues[position] != null){
             viewHolder.parInput.setText(parValues[position].toString())
         }
-        viewHolder.parInput.filters = arrayOf(HoleEntryFilter(1, 5))
+        viewHolder.parInput.filters = arrayOf(HoleEntryFilter(3, 6))
         viewHolder.parInput.doAfterTextChanged {
             val text = viewHolder.parInput.text.toString()
             if (text == ""){
@@ -105,7 +105,7 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
         if (puttValues[position] != null){
             viewHolder.puttsInput.setText(puttValues[position].toString())
         }
-        viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(1, 20))
+        viewHolder.puttsInput.filters = arrayOf(HoleEntryFilter(0, 19))
         viewHolder.puttsInput.doAfterTextChanged {
             val text = viewHolder.puttsInput.text.toString()
             if (text == ""){
