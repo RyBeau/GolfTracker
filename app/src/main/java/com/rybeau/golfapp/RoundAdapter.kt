@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RoundAdapter(private val rounds: Array<Round>, private val onRoundListener: OnRoundListener)
+class RoundAdapter(private var rounds: List<Round>, private val onRoundListener: OnRoundListener)
     : RecyclerView.Adapter<RoundAdapter.RoundViewHolder>()
 {
     interface OnRoundListener{
@@ -42,4 +42,8 @@ class RoundAdapter(private val rounds: Array<Round>, private val onRoundListener
     }
 
     override fun getItemCount() = rounds.size
+
+    fun setData(newRounds: List<Round>){
+        rounds = newRounds
+    }
 }
