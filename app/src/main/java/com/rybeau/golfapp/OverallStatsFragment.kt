@@ -17,6 +17,12 @@ class OverallStatsFragment : TransitionFragment() {
         RoundViewModelFactory((requireActivity().application as GolfTrackerRoomApplication).repository)
     }
 
+    private var totalRounds: Int = 0
+    private var averageScore: Double = 0.0
+    private var averagePutts: Double = 0.0
+    private lateinit var previous10Rounds: List<Int>
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
@@ -26,7 +32,31 @@ class OverallStatsFragment : TransitionFragment() {
                               savedInstanceState: Bundle?): View? {
         val mainActivity = activity as MainActivity
         mainActivity.setLocation(MainActivity.Location.OVERALL_STATS)
-        return inflater.inflate(R.layout.fragment_overall_stats, container, false)
+
+        val view = inflater.inflate(R.layout.fragment_overall_stats, container, false)
+
+
+        viewModel.averageScore.observe(viewLifecycleOwner, { newAverageScore ->
+            averageScore = newAverageScore ?: 0.0
+            Log.d("Testing", averageScore.toString())
+            updateAverageScore(view)
+        })
+        viewModel.averagePutts.observe(viewLifecycleOwner, { newAveragePutts ->
+            averagePutts = newAveragePutts ?: 0.0
+            Log.d("Testing", averagePutts.toString())
+            updateAveragePutts(view)
+        })
+        viewModel.totalRounds.observe(viewLifecycleOwner, { newTotal ->
+            totalRounds = newTotal ?: 0
+            updateTotalRounds(view)
+        })
+        viewModel.previous10Rounds.observe(viewLifecycleOwner, { newPrevious10 ->
+            previous10Rounds = newPrevious10
+            Log.d("Testing", previous10Rounds.toString())
+            drawChart(view)
+        })
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,19 +69,26 @@ class OverallStatsFragment : TransitionFragment() {
         }
 
         populateStats(view)
-        drawChart(view)
+    }
+
+    private fun updateAverageScore(view: View){
+        val averageScoreText = view.findViewById<TextView>(R.id.averageScore)
+        averageScoreText.text = String.format("%.1f", averageScore)
+    }
+
+    private fun updateAveragePutts(view: View){
+        val averagePuttsText = view.findViewById<TextView>(R.id.puttsPerHole)
+        averagePuttsText.text = String.format("%.1f", averagePutts)
+    }
+
+    private fun updateTotalRounds(view: View){
+        val totalRoundsText = view.findViewById<TextView>(R.id.totalRounds)
+        totalRoundsText.text = totalRounds.toString()
     }
 
     private fun populateStats(view: View) {
-        val averageScore = view.findViewById<TextView>(R.id.averageScore)
         val handicap = view.findViewById<TextView>(R.id.handicap)
-        val puttsPerHole = view.findViewById<TextView>(R.id.puttsPerHole)
-        val totalRounds = view.findViewById<TextView>(R.id.totalRounds)
-
-        averageScore.text = "+13"
         handicap.text = "13"
-        puttsPerHole.text = "3"
-        totalRounds.text = "115"
     }
 
     private fun getThemeColors(): Array<String>{
@@ -71,6 +108,7 @@ class OverallStatsFragment : TransitionFragment() {
 
         val aaChartView = view.findViewById<AAChartView>(R.id.aa_chart_view)
 
+        Log.d("Testing", arrayOf(previous10Rounds).toString())
         val aaChartModel : AAChartModel = AAChartModel()
             .chartType(AAChartType.Spline)
             .backgroundColor(colors[0])
@@ -85,7 +123,7 @@ class OverallStatsFragment : TransitionFragment() {
                         .color(colors[1])
                         .showInLegend(false)
                         .lineWidth(3f)
-                        .data(arrayOf(3, 7, 2, 0, -2, 1, 2, -1, 4, 0)),
+                        .data(previous10Rounds.toTypedArray()),
                 )
             )
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
