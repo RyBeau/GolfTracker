@@ -88,18 +88,6 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/handicapLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/handicap"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/averageScoreLabel" />
-
-    <TextView
         android:id="@+id/puttsPerHoleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,7 +97,7 @@
         android:textColor="?attr/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/chartCard"
-        app:layout_constraintTop_toBottomOf="@+id/handicapLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/averageScoreLabel" />
 
     <TextView
         android:id="@+id/TotalRoundsLabel"
@@ -135,17 +123,6 @@
         app:layout_constraintTop_toTopOf="@+id/divider" />
 
     <TextView
-        android:id="@+id/handicap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="30dp"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/averageScore" />
-
-    <TextView
         android:id="@+id/puttsPerHole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -154,7 +131,7 @@
         android:textColor="?attr/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/handicap" />
+        app:layout_constraintTop_toBottomOf="@+id/averageScore" />
 
     <TextView
         android:id="@+id/totalRounds"

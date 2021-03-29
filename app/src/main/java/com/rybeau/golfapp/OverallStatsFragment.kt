@@ -67,8 +67,6 @@ class OverallStatsFragment : TransitionFragment() {
         backButton.setOnClickListener{
             requireActivity().onBackPressed()
         }
-
-        populateStats(view)
     }
 
     private fun updateAverageScore(view: View){
@@ -84,11 +82,6 @@ class OverallStatsFragment : TransitionFragment() {
     private fun updateTotalRounds(view: View){
         val totalRoundsText = view.findViewById<TextView>(R.id.totalRounds)
         totalRoundsText.text = totalRounds.toString()
-    }
-
-    private fun populateStats(view: View) {
-        val handicap = view.findViewById<TextView>(R.id.handicap)
-        handicap.text = "13"
     }
 
     private fun getThemeColors(): Array<String>{
