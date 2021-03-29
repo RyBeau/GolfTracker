@@ -10,34 +10,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
 import android.widget.Button
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import kotlin.math.round
 
 class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListener {
 
-    private val rounds = arrayOf(
-        Round("9/1/2020", -3, 2.0),
-        Round("8/1/2020", 0, 2.0),
-        Round("7/1/2020", 3, 3.0),
-        Round("6/1/2020", 1, 2.0),
-        Round("5/1/2020", -1, 2.0),
-        Round("4/1/2020", 15, 5.0),
-        Round("3/1/2020", 13, 4.0),
-        Round("2/1/2020", -5, 1.0),
-        Round("1/1/2020", 1, 3.0),
-        Round("9/1/2020", -3, 2.0),
-        Round("8/1/2020", 0, 2.0),
-        Round("7/1/2020", 3, 3.0),
-        Round("6/1/2020", 1, 2.0),
-        Round("5/1/2020", -1, 2.0),
-        Round("4/1/2020", 15, 5.0),
-        Round("3/1/2020", 12, 4.0),
-        Round("2/1/2020", -5, 1.0),
-        Round("1/1/2020", 1, 3.0),
-    )
+    private val viewModel: RoundViewModel by activityViewModels() {
+        RoundViewModelFactory((requireActivity().application as GolfTrackerRoomApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,32 +35,38 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
     ): View? {
         val mainActivity = activity as MainActivity
         mainActivity.setLocation(MainActivity.Location.PREVIOUS_ROUNDS)
-        return inflater.inflate(R.layout.fragment_previous_rounds, container, false)
+
+        val view = inflater.inflate(R.layout.fragment_previous_rounds, container, false)
+
+        val roundAdapter = RoundAdapter(listOf(), this)
+        viewModel.allRounds.observe(viewLifecycleOwner, { newRounds ->
+            roundAdapter.setData(newRounds)
+        })
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.roundsView)
+        recyclerView.apply{
+            layoutManager = LinearLayoutManager(activity)
+            adapter = roundAdapter
+        }
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val backButton = view.findViewById<Button>(R.id.backButton)
-        val recyclerView: RecyclerView = view.findViewById(R.id.roundsView)
 
         backButton.setOnClickListener{
             requireActivity().onBackPressed()
         }
-
-        val roundAdapter = RoundAdapter(rounds, this)
-
-        recyclerView.apply{
-            layoutManager = LinearLayoutManager(activity)
-            adapter = roundAdapter
-        }
     }
 
     override fun onRoundClick(position: Int) {
-        val options = arrayOf(getString(R.string.share))
+        val options = arrayOf(getString(R.string.share), getString(R.string.delete))
         val builder = AlertDialog.Builder(activity)
         builder.setItems(options) { _, optionId ->
-            dispatchActon(optionId, rounds[position])
+            dispatchActon(optionId, viewModel.allRounds.value!![position])
         }
         builder.show()
     }
@@ -83,6 +74,7 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
     private fun dispatchActon(optionId: Int, round: Round) {
         when (optionId) {
             0 -> textAction(round)
+            1 -> confirmDelete(round)
         }
     }
 
@@ -94,5 +86,19 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
         intent.putExtra(Intent.EXTRA_TEXT, textContent)
 
         startActivity(Intent.createChooser(intent, getString(R.string.share_using)))
+    }
+
+    private fun confirmDelete(round: Round){
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage(getString(R.string.delete_confirmation))
+            .setCancelable(false)
+            .setPositiveButton(R.string.yes) { _, _ ->
+                viewModel.deleteRound(round)
+            }
+            .setNegativeButton(R.string.no){ dialog, _ ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
     }
 }

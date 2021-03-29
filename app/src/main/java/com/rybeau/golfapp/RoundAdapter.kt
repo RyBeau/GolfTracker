@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RoundAdapter(private val rounds: Array<Round>, private val onRoundListener: OnRoundListener)
+class RoundAdapter(private var rounds: List<Round>, private val onRoundListener: OnRoundListener)
     : RecyclerView.Adapter<RoundAdapter.RoundViewHolder>()
 {
     interface OnRoundListener{
@@ -16,9 +16,9 @@ class RoundAdapter(private val rounds: Array<Round>, private val onRoundListener
 
     class RoundViewHolder(itemView: View, val onRoundListener: OnRoundListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        val date: TextView = itemView.findViewById<TextView>(R.id.date)
-        val score: TextView = itemView.findViewById<TextView>(R.id.score)
-        val averagePutts: TextView = itemView.findViewById<TextView>(R.id.averagePutts)
+        val date: TextView = itemView.findViewById(R.id.date)
+        val score: TextView = itemView.findViewById(R.id.score)
+        val averagePutts: TextView = itemView.findViewById(R.id.averagePutts)
 
         init {
             itemView.setOnClickListener(this)
@@ -38,8 +38,13 @@ class RoundAdapter(private val rounds: Array<Round>, private val onRoundListener
     override fun onBindViewHolder(viewHolder: RoundViewHolder, position: Int) {
         viewHolder.date.text = rounds[position].date
         viewHolder.score.text = rounds[position].score.toString()
-        viewHolder.averagePutts.text = rounds[position].averagePutts.toString()
+        viewHolder.averagePutts.text = String.format("%.1f", rounds[position].averagePutts)
     }
 
     override fun getItemCount() = rounds.size
+
+    fun setData(newRounds: List<Round>){
+        rounds = newRounds
+        notifyDataSetChanged()
+    }
 }
