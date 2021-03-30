@@ -13,12 +13,12 @@
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
-        android:layout_height="55dp"
+        android:layout_height="40dp"
         android:layout_marginStart="15dp"
         android:gravity="center"
         android:text="@string/new_round"
         android:textColor="?attr/colorPrimary"
-        android:textSize="36sp" />
+        android:textSize="24sp" />
 
     <View
         android:id="@+id/divider2"
@@ -29,7 +29,7 @@
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/holesPlayedLayout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="15dp"
         app:alignItems="center"
         app:justifyContent="space_between">
@@ -97,6 +97,63 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/holeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="@string/hole"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/parLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="@string/par"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/scoreLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="@string/score"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/puttsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="@string/putts"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/colorSecondary" />
+
             <ListView
                 android:id="@+id/inputView"
                 android:layout_width="match_parent"
@@ -131,7 +188,7 @@
             android:layout_gravity="center"
             android:layout_marginEnd="7.5dp"
             android:layout_weight="1"
-            android:height="75dp"
+            android:height="35dp"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:text="@string/add_round"
             android:textColor="?attr/colorPrimary"
@@ -146,7 +203,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="7.5dp"
             android:layout_weight="1"
-            android:height="75dp"
+            android:height="35dp"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:text="@string/cancel"
             android:textColor="?attr/colorPrimary"
