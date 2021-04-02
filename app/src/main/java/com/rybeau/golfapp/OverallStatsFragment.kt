@@ -116,7 +116,7 @@ class OverallStatsFragment : TransitionFragment() {
                         .color(colors[1])
                         .showInLegend(false)
                         .lineWidth(3f)
-                        .data(previous10Rounds.toTypedArray()),
+                        .data(previous10Rounds.reversed().toTypedArray()),
                 )
             )
         aaChartView.aa_drawChartWithChartModel(aaChartModel)
