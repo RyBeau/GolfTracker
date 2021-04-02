@@ -1,7 +1,6 @@
 package com.rybeau.golfapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.activityViewModels

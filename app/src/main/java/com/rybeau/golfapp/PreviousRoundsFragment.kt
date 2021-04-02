@@ -3,20 +3,13 @@ package com.rybeau.golfapp
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.transition.TransitionInflater
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewManager
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import kotlin.math.round
 
 class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListener {
 
