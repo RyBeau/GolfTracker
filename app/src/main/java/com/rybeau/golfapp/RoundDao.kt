@@ -21,7 +21,7 @@ interface RoundDao {
     @Query("SELECT COUNT(*) FROM round")
     fun getTotalRounds(): Flow<Int>
 
-    @Query("SELECT score FROM (SELECT score, id FROM round ORDER BY id ASC LIMIT 10)")
+    @Query("SELECT score FROM (SELECT score, id FROM round ORDER BY id DESC LIMIT 10)")
     fun getPrevious10Score(): Flow<List<Int>>
 
     @Query("SELECT AVG(score) FROM round")
