@@ -3,23 +3,22 @@ package com.rybeau.golfapp
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.transition.TransitionInflater
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewManager
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import kotlin.math.round
 
+/**
+ * Fragment for Previous Rounds Page
+ */
 class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListener {
 
+    /**
+     * ViewModel for the Room database
+     * */
     private val viewModel: RoundViewModel by activityViewModels() {
         RoundViewModelFactory((requireActivity().application as GolfTrackerRoomApplication).repository)
     }
@@ -29,6 +28,9 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
+    /**
+     * Inflates the RecyclerView with previous rounds from the Room Database.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,6 +64,10 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
         }
     }
 
+    /**
+     * Callback method for when a round is clicked in the RecyclerView.
+     * Create dialog with possible actions.
+     */
     override fun onRoundClick(position: Int) {
         val options = arrayOf(getString(R.string.share), getString(R.string.delete))
         val builder = AlertDialog.Builder(activity)
@@ -71,6 +77,9 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
         builder.show()
     }
 
+    /**
+     * Dispatches the appropriate action given which dialog option was selected.
+     * */
     private fun dispatchActon(optionId: Int, round: Round) {
         when (optionId) {
             0 -> textAction(round)
@@ -78,16 +87,23 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
         }
     }
 
+    /**
+     * Dispatches Implicit Intent for sending a message about a given round.
+     * Works with Email, Text, Twitter etc.
+     */
     private fun textAction(round : Round){
         val intent = Intent(Intent.ACTION_SEND)
-        val textContent = "I scored ${round.score} in golf on ${round.date} with an average of ${round.averagePutts} putts per hole"
+        val textContent = "I scored ${if(round.score > 0) "+" else ""} ${round.score} in golf on ${round.date} with an average of ${String.format("%.1f", round.averagePutts)} putts per hole"
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_using))
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject))
         intent.putExtra(Intent.EXTRA_TEXT, textContent)
 
         startActivity(Intent.createChooser(intent, getString(R.string.share_using)))
     }
 
+    /**
+     * Creates confirmation dialog to confirm deletion.
+     */
     private fun confirmDelete(round: Round){
         val builder = AlertDialog.Builder(context)
         builder.setMessage(getString(R.string.delete_confirmation))

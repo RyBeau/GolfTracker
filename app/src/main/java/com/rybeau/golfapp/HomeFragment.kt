@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
 
+/**
+ * Fragment for Home screen
+ */
 class HomeFragment : TransitionFragment() {
 
 

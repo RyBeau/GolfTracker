@@ -3,9 +3,6 @@ package com.rybeau.golfapp
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.util.*
 
 @Entity(tableName = "round")
 class Round (

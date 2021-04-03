@@ -1,18 +1,22 @@
 package com.rybeau.golfapp
 
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 
+/**
+ * Fragment for Overall Stats Page
+ */
 class OverallStatsFragment : TransitionFragment() {
 
+    /**
+     * ViewModel for the Room database
+     * */
     private val viewModel: RoundViewModel by activityViewModels() {
         RoundViewModelFactory((requireActivity().application as GolfTrackerRoomApplication).repository)
     }
@@ -28,6 +32,9 @@ class OverallStatsFragment : TransitionFragment() {
         enterTransition = inflater.inflateTransition(R.transition.slide_in)
     }
 
+    /**
+     * Populates properties from the Room Database
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val mainActivity = activity as MainActivity
@@ -69,21 +76,33 @@ class OverallStatsFragment : TransitionFragment() {
         }
     }
 
+    /**
+     * Updates the averageScore TextView
+     */
     private fun updateAverageScore(view: View){
         val averageScoreText = view.findViewById<TextView>(R.id.averageScore)
         averageScoreText.text = String.format("%.1f", averageScore)
     }
 
+    /**
+     * Updates the averagePutts TextView
+     */
     private fun updateAveragePutts(view: View){
         val averagePuttsText = view.findViewById<TextView>(R.id.puttsPerHole)
         averagePuttsText.text = String.format("%.1f", averagePutts)
     }
 
+    /**
+     * Updates the totalRounds TextView
+     */
     private fun updateTotalRounds(view: View){
         val totalRoundsText = view.findViewById<TextView>(R.id.totalRounds)
         totalRoundsText.text = totalRounds.toString()
     }
 
+    /**
+     * Gets the current theme colors to set the correct graph colors
+     */
     private fun getThemeColors(): Array<String>{
         val primaryColor = TypedValue()
         val secondaryColor = TypedValue()
@@ -96,12 +115,15 @@ class OverallStatsFragment : TransitionFragment() {
         return arrayOf(primaryColorString, secondaryColorString)
     }
 
+    /**
+     * Populates the graph with the data from the room database. Configures the properties and
+     * appearance of the graph.
+     */
     private fun drawChart(view: View){
         val colors : Array<String> = getThemeColors()
 
         val aaChartView = view.findViewById<AAChartView>(R.id.aa_chart_view)
 
-        Log.d("Testing", arrayOf(previous10Rounds).toString())
         val aaChartModel : AAChartModel = AAChartModel()
             .chartType(AAChartType.Spline)
             .backgroundColor(colors[0])
@@ -116,7 +138,7 @@ class OverallStatsFragment : TransitionFragment() {
                         .color(colors[1])
                         .showInLegend(false)
                         .lineWidth(3f)
-                        .data(previous10Rounds.toTypedArray()),
+                        .data(previous10Rounds.reversed().toTypedArray()),
                 )
             )
         aaChartView.aa_drawChartWithChartModel(aaChartModel)

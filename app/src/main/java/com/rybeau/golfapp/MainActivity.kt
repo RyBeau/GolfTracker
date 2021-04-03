@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var location : Location
 
+    /**
+     * Enum for locations representing each fragment.
+     */
     enum class Location{
         HOME, NEW_ROUND, PREVIOUS_ROUNDS, OVERALL_STATS
     }
@@ -25,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    /**
+     * Handler for back pressed, uses location to decide on how to handle
+     * event.
+     */
     override fun onBackPressed() {
         when(location){
             Location.NEW_ROUND -> {
@@ -40,19 +47,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Removes a given list view by id
+     */
     fun removeListView(id : Int) {
         val view = findViewById<View>(id)
         view?.visibility = View.GONE
     }
 
+    /**
+     * Setter for location property
+     */
     fun setLocation(currentLocation: Location) {
         location = currentLocation
     }
 
+    /**
+     * Getter for location property
+     */
     fun getLocation(): Location {
         return location
     }
 
+    /**
+     * Creates confirmation dialog for exiting the NewRoundFragment
+     */
     private fun onBackNewRound(){
         val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.cancel_confirmation))
