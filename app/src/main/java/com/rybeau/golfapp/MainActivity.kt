@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var location : Location
 
+    /**
+     * Enum for locations representing each fragment.
+     */
     enum class Location{
         HOME, NEW_ROUND, PREVIOUS_ROUNDS, OVERALL_STATS
     }
