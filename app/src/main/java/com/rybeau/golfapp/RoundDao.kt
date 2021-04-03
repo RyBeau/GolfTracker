@@ -15,18 +15,33 @@ interface RoundDao {
     @Delete
     suspend fun delete(round:Round)
 
+    /**
+     * Gets all rounds
+     */
     @Query("SELECT * FROM round ORDER BY id DESC")
     fun getAll(): Flow<List<Round>>
 
+    /**
+     * Gets the total number of rounds
+     */
     @Query("SELECT COUNT(*) FROM round")
     fun getTotalRounds(): Flow<Int>
 
+    /**
+     * Select the 10 most recent rounds
+     */
     @Query("SELECT score FROM (SELECT score, id FROM round ORDER BY id DESC LIMIT 10)")
     fun getPrevious10Score(): Flow<List<Int>>
 
+    /**
+     * Gets the average score
+     */
     @Query("SELECT AVG(score) FROM round")
     fun getAverageScore(): Flow<Double>
 
+    /**
+     * Gets the average putts
+     */
     @Query("SELECT AVG(averagePutts) FROM round")
     fun getAveragePutts(): Flow<Double>
 }

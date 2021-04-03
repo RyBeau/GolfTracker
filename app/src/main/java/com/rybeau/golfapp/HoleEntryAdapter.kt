@@ -12,6 +12,9 @@ import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 
+/**
+ * Custom Adapter for Entering Hole Scores, Pars, and Putts
+ */
 class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableList<String?> = MutableList(holes){null},
                        existingScoreValues: MutableList<String?> = MutableList(holes){null},
                        existingPuttValues: MutableList<String?> = MutableList(holes){null}) : BaseAdapter() {

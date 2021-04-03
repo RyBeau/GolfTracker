@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Custom Adapter for showing previous rounds.
+ */
 class RoundAdapter(private var rounds: List<Round>, private val onRoundListener: OnRoundListener)
     : RecyclerView.Adapter<RoundAdapter.RoundViewHolder>()
 {
