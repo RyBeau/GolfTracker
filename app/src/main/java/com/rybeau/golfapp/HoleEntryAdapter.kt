@@ -14,6 +14,8 @@ import androidx.core.widget.doOnTextChanged
 
 /**
  * Custom Adapter for Entering Hole Scores, Pars, and Putts
+ * Can be initialised with some list of par, score and putt values to persist data between
+ * orientation changes.
  */
 class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableList<String?> = MutableList(holes){null},
                        existingScoreValues: MutableList<String?> = MutableList(holes){null},
@@ -21,8 +23,17 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
+    /**
+     * List of Par values linked to the EditText widgets
+     */
     private val parValues: MutableList<String?> = existingParValues
+    /**
+     * List of Score values linked to the EditText widgets
+     */
     private val scoreValues: MutableList<String?> = existingScoreValues
+    /**
+     * List of Putts values linked to the EditText widgets
+     */
     private val puttValues: MutableList<String?> = existingPuttValues
 
     class HoleEntryViewHolder(itemView: View) {
@@ -79,6 +90,11 @@ class HoleEntryAdapter(context: Context, holes: Int, existingParValues: MutableL
         return puttValues
     }
 
+    /**
+     * Configures each Edit Text Widget depending on values that may or may not
+     * already exist. Set a callback that updates the relate list position when the text changes
+     * in the EditText field.
+     */
     private fun fillViewHolder(viewHolder: HoleEntryViewHolder, position: Int) {
         viewHolder.holeNumber.text = (position + 1).toString()
         if (parValues[position] != null){
