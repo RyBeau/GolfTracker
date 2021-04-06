@@ -93,7 +93,7 @@ class PreviousRoundsFragment : TransitionFragment(), RoundAdapter.OnRoundListene
      */
     private fun textAction(round : Round){
         val intent = Intent(Intent.ACTION_SEND)
-        val textContent = "I scored ${if(round.score > 0) "+" else ""} ${round.score} in golf on ${round.date} with an average of ${String.format("%.1f", round.averagePutts)} putts per hole"
+        val textContent = getString(R.string.share_message, if(round.score > 0) "+ " else "", round.score, round.date, round.averagePutts)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject))
         intent.putExtra(Intent.EXTRA_TEXT, textContent)

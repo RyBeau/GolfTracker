@@ -81,7 +81,7 @@ class OverallStatsFragment : TransitionFragment() {
      */
     private fun updateAverageScore(view: View){
         val averageScoreText = view.findViewById<TextView>(R.id.averageScore)
-        averageScoreText.text = String.format("%.1f", averageScore)
+        averageScoreText.text = getString(R.string.score_string, if(averageScore > 0) "+ " else "", averageScore)
     }
 
     /**
